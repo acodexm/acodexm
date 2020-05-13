@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check custom validators should validate isRequired 1`] = `undefined`;
+
+exports[`check custom validators should validate isRequired 2`] = `undefined`;
+
+exports[`check custom validators should validate isRequired 3`] = `undefined`;
+
+exports[`check custom validators should validate isRequired 4`] = `undefined`;
+
+exports[`check custom validators should validate isRequired 5`] = `undefined`;
+
+exports[`check custom validators should validate isRequired 6`] = `undefined`;
+
+exports[`check custom validators should validate isRequired 7`] = `"validation.edit.required"`;
+
+exports[`check custom validators should validate isRequired 8`] = `"validation.edit.required"`;
+
+exports[`check custom validators should validate isRequired 9`] = `"validation.edit.required"`;
+
+exports[`check custom validators should validate isRequired 10`] = `"validation.edit.required"`;
+
+exports[`check custom validators should validate isRequired 11`] = `"validation.edit.required"`;
+
+exports[`check custom validators should validate isRequired 12`] = `"validation.edit.required"`;
+
+exports[`check custom validators should validate isRequired 13`] = `"validation.edit.required"`;
+
+exports[`check custom validators should validate isRequired 14`] = `"validation.edit.required"`;

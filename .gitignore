@@ -1,2 +1,8 @@
 node_modules/
 coverage/
+.idea
+.env
+.vscode
+yarn.lock
+yarn-error.log
+export
