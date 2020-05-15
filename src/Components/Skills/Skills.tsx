@@ -10,6 +10,10 @@ import react from '../../assets/icons/react.png';
 import redux from '../../assets/icons/redux.png';
 import spring from '../../assets/icons/spring.png';
 import styled from 'styled-components';
+import SectionTitle from '../Section/SectionTitle';
+import { getMessage } from '../../i18n';
+import Section from '../Section/Section';
+import { section1Color } from '../../themes/colors';
 
 const icons = [
   {
@@ -58,23 +62,17 @@ const icons = [
     name: 'Android'
   }
 ];
-const SkillsSection = styled.section`
-  background-color: #1f1f1f;
-  background-attachment: fixed;
-  background-size: cover;
-  line-height: 1.8;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+const SkillsSection = styled(Section)`
+  background-color: ${section1Color};
+  min-height: 50vh;
 `;
 interface Props {
-  sectionRef:React.RefObject<HTMLElement>
+  sectionRef: React.RefObject<HTMLElement>;
 }
-const Skills:FunctionComponent<Props> = ({sectionRef})=> {
+const Skills: FunctionComponent<Props> = ({ sectionRef }) => {
   return (
     <SkillsSection ref={sectionRef}>
+      <SectionTitle title={getMessage('section.title.skills')} />
       <Waves items={icons} />
     </SkillsSection>
   );

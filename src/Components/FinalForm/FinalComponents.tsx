@@ -4,7 +4,8 @@ import createDecorator from 'final-form-calculate';
 import { get } from 'lodash';
 import { errorMsg, isInvalid, isValid } from './validator/validator';
 import styled from 'styled-components';
-import { media } from 'styled-bootstrap-grid';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { errorColor, validColor } from '../../themes/colors';
 
 interface Condition {
   when: string;
@@ -33,9 +34,9 @@ const Input = styled.input<Input>`
   border-width: 1px;
   border-style: solid;
   border-radius: 0.25rem;
-  box-shadow: ${({ invalid, valid }) => (invalid ? 'red' : valid ? 'green' : '')};
+  box-shadow: ${({ invalid, valid }) => (invalid ? errorColor : valid ? validColor : '')};
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  border-color: ${({ invalid, valid }) => (invalid ? 'red' : valid ? 'green' : '')};
+  border-color: ${({ invalid, valid }) => (invalid ? errorColor : valid ? validColor : '')};
 `;
 const Textarea = styled.textarea<Input>`
   height: 8rem;
@@ -46,10 +47,10 @@ const Textarea = styled.textarea<Input>`
   border-radius: 0.25rem;
   box-shadow: ${({ invalid, valid }) => (invalid ? 'red' : valid ? 'green' : '')};
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  border-color: ${({ invalid, valid }) => (invalid ? 'red' : valid ? 'green' : '')};
+  border-color: ${({ invalid, valid }) => (invalid ? errorColor : valid ? validColor : '')};
 `;
 const CustomInput = styled.input<CustomInput>`
-  outline-color: ${({ invalid }) => (invalid ? 'red' : '')};
+  outline-color: ${({ invalid }) => (invalid ? errorColor : '')};
 `;
 
 const Counter = styled.span`
@@ -61,7 +62,10 @@ const Counter = styled.span`
   width: 100%;
   text-align: end;
 `;
-
+const ErrorMsg = styled.span<{ visible?: boolean }>`
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+  color: ${errorColor};
+`;
 export const Condition = ({ when, is, isNot, children }: Condition) => (
   <Field name={when} subscription={{ value: true }}>
     {({ input: { value } }) => {
@@ -81,11 +85,11 @@ export const FinalCheckbox = ({ input, meta, label, withErrorMessage, id, ...res
       disabled={meta.submitting || (meta.data && meta.data.disabled)}
       {...rest}
     />
-    {withErrorMessage && isInvalid(meta) && <span style={{ color: 'red' }}>{errorMsg(meta)}</span>}
+    <ErrorMsg visible={withErrorMessage && isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
   </>
 );
-export const FinalInput = ({ input, meta, maxLength, ...rest }: FieldRenderProps<any>) => (
-  <>
+export const FinalInput = ({ className, input, meta, maxLength, ...rest }: FieldRenderProps<any>) => (
+  <div className={className}>
     <Input
       valid={isValid(input, meta)}
       invalid={isInvalid(meta)}
@@ -95,11 +99,23 @@ export const FinalInput = ({ input, meta, maxLength, ...rest }: FieldRenderProps
       maxLength={maxLength}
     />
     <Counter>{maxLength && `${input.value.length || 0}/${maxLength}`}</Counter>
-    {isInvalid(meta) && <span id="error">{errorMsg(meta)}</span>}
-  </>
+    <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
+  </div>
 );
-export const FinaTextarea = ({ input, meta, maxLength, ...rest }: FieldRenderProps<any>) => (
-  <>
+
+export const FinalReCaptcha = ({ className, input, meta, theme }: FieldRenderProps<any>) => (
+  <div className={className}>
+    <ReCAPTCHA
+      theme={theme}
+      sitekey={process.env.REACT_APP_RECAPTCHA_KEY || ''}
+      onChange={input.onChange}
+    />
+    <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
+  </div>
+);
+
+export const FinaTextarea = ({ className, input, meta, maxLength, ...rest }: FieldRenderProps<any>) => (
+  <div className={className}>
     <Textarea
       valid={isValid(input, meta)}
       invalid={isInvalid(meta)}
@@ -109,8 +125,8 @@ export const FinaTextarea = ({ input, meta, maxLength, ...rest }: FieldRenderPro
       maxLength={maxLength}
     />
     <Counter>{maxLength && `${input.value.length || 0}/${maxLength}`}</Counter>
-    {isInvalid(meta) && <span id="error">{errorMsg(meta)}</span>}
-  </>
+    <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
+  </div>
 );
 export const removeField = (when: string, field: string, is: any, isNot: any) =>
   createDecorator({

@@ -1,26 +1,40 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
+import ProfilePic from './ProfilePic';
+import Section from '../Section/Section';
+import { Col, Container, Row } from 'styled-bootstrap-grid';
+import { backgroundColor, section1Color } from '../../themes/colors';
 
-const WelcomeSection = styled.section`
-  background-color: #1f1f1f;
-  background-attachment: fixed;
-  background-size: cover;
-  line-height: 1.8;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
 interface Props {
   element: React.RefObject<HTMLDivElement>;
 }
+const WelcomeSection = styled(Section)`
+  background-color: ${section1Color};
+  padding-top: 100px;
+  height: 100vh;
+`;
+const HelloWorld = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 const Welcome: FunctionComponent<Props> = ({ element }) => {
   return (
-
-      <WelcomeSection>
-        <div ref={element}>takie tam</div>
-      </WelcomeSection>
+    <WelcomeSection>
+      <Container>
+        <Row>
+          <Col xs={12} lg={6}>
+            <ProfilePic />
+          </Col>
+          <Col xs={12} lg={6}>
+            <HelloWorld ref={element}>
+              <h1>Adam Kamiński</h1>
+              <h2>Creative web developer</h2>
+            </HelloWorld>
+          </Col>
+        </Row>
+      </Container>
+    </WelcomeSection>
   );
 };
 

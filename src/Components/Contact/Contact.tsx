@@ -2,99 +2,67 @@ import React, { FunctionComponent } from 'react';
 import { Field, Form } from 'react-final-form';
 import createDecorator from 'final-form-focus';
 import { composeValidators, isRequired, mustBeEmail } from '../FinalForm/validator/validator';
-import { MessageFactory } from '../../i18n';
-import { FinalInput, FinaTextarea } from '../FinalForm/FinalComponents';
+import { getMessage } from '../../i18n';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
-import ReactJson from 'react-json-view-ts';
-import styled from 'styled-components';
+import SectionTitle from '../Section/SectionTitle';
+import emailjs from 'emailjs-com';
+import { ContactSection, FormInput, FormReCaptcha, FormTextarea, SubmitButton } from './ContactStyles';
 
-const getMessage = MessageFactory('contact');
+emailjs.init(process.env.REACT_APP_EMAILJS_USER_ID || 'user_CE0Pjg4Iq1GYpRoSolxiG');
 
 const focusOnError = createDecorator();
-const ContactSection = styled.section`
-  background-color: #1f1f1f;
-  background-attachment: fixed;
-  background-size: cover;
-  line-height: 1.8;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
-const FormInput = styled(FinalInput)`
-  color: wheat;
-  padding: 3px;
-  margin: 0.7rem auto;
-  background-color: rgba(255, 119, 0, 0.47);
-  input {
-  }
-  #error {
-    display: block;
-    color: red;
-  }
-`;
-const FormTextarea = styled(FinaTextarea)`
-  color: wheat;
-  padding: 3px;
-  margin: 0.7rem auto;
-  background-color: rgba(255, 119, 0, 0.47);
-  input {
-  }
-  #error {
-    display: block;
-    color: red;
-  }
-`;
-const SubmitButton = styled.button`
-  height: 50px;
-  padding: 1rem;
-  margin: 1rem;
-  background-color: coral;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-`;
+
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
 export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
   const onSubmit = (values: any) => {
     console.log(values);
-    // await onSend(serializeData({ ...values }));
+    emailjs.send('gmail', 'acodexm', values).then(
+      (result) => {
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
   };
   return (
     <ContactSection ref={sectionRef}>
+      <SectionTitle title={getMessage('section.title.contact')} />
       <Container fluid>
         <Form
           onSubmit={onSubmit}
           decorators={[focusOnError]}
-          render={({ submitError, handleSubmit, submitting }) => (
-            <form onSubmit={handleSubmit} style={{maxWidth:'1100px' ,margin:'auto'}}>
-              <Row >
+          render={({ handleSubmit, submitting }) => (
+            <form onSubmit={handleSubmit} style={{ maxWidth: '1100px', margin: 'auto' }}>
+              <Row>
                 <Col lg={4} sm={12}>
-                  <Field name="name" validate={isRequired()}>
-                    {(field) => <FormInput {...field} />}
+                  <Field name="from_name" validate={isRequired()}>
+                    {(field) => <FormInput {...field} placeholder={getMessage('contact.name')} />}
                   </Field>
                 </Col>
                 <Col lg={4} sm={12}>
-                  <Field name="email" validate={composeValidators(mustBeEmail, isRequired())}>
-                    {(field) => <FormInput {...field} type="email" />}
+                  <Field name="from_email" validate={composeValidators(mustBeEmail, isRequired())}>
+                    {(field) => <FormInput {...field} type="email" placeholder={getMessage('contact.email')} />}
                   </Field>
                 </Col>
                 <Col lg={4} sm={12}>
                   <Field name="subject" validate={isRequired()}>
-                    {(field) => <FormInput {...field} />}
+                    {(field) => <FormInput {...field} placeholder={getMessage('contact.subject')} />}
                   </Field>
                 </Col>
               </Row>
               <Row>
                 <Col>
-                  <Field name="content" validate={isRequired()}>
-                    {(field) => <FormTextarea {...field} type="textarea" />}
+                  <Field name="message_html" validate={isRequired()}>
+                    {(field) => <FormTextarea {...field} type="textarea" placeholder={'dup'} />}
                   </Field>
                 </Col>
-                <ReactJson src={submitError} />
               </Row>
+              <Field name="g-recaptcha-response" validate={isRequired()}>
+                {(field) => <FormReCaptcha {...field} />}
+              </Field>
               <SubmitButton className="btn btn-success roboto" type="submit" disabled={submitting}>
                 {getMessage('contact.send')}
               </SubmitButton>

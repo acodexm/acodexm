@@ -1,25 +1,22 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { Container, Col, Row } from 'styled-bootstrap-grid';
+import SectionTitle from '../Section/SectionTitle';
+import Section from '../Section/Section';
+import { getMessage } from '../../i18n';
+import { cardColor, section2Color } from '../../themes/colors';
 
-const getMessage = (msg: string) => msg;
-const ProfileSection = styled.section`
-  width: 100%;
-  flex-direction: column;
-  background-color: #424242;
-  background-attachment: fixed;
-  background-size: cover;
-  line-height: 1.8;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+const AboutSection = styled(Section)`
+  background-color: ${section2Color};
+  min-height: 50vh;
 `;
 const Card = styled.div`
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   border-color: coral;
-  border-width: thin;
+  border-width: thick;
+  margin: 2rem;
+  padding: 1rem;
+  background-color: ${cardColor};
 `;
 const CardContent = styled.div`
   padding: 15px;
@@ -27,9 +24,10 @@ const CardContent = styled.div`
 interface Props {
   sectionRef:React.RefObject<HTMLElement>
 }
-const Profile:FunctionComponent<Props> = ({sectionRef}) => {
+const About:FunctionComponent<Props> = ({sectionRef}) => {
   return (
-    <ProfileSection ref={sectionRef}>
+    <AboutSection ref={sectionRef}>
+      <SectionTitle title={getMessage('section.title.about')}/>
       <Container>
         <Row>
           <Col xs={12} md={6} lg={6}>
@@ -68,8 +66,8 @@ const Profile:FunctionComponent<Props> = ({sectionRef}) => {
           </Col>
         </Row>
       </Container>
-    </ProfileSection>
+    </AboutSection>
   );
 };
 
-export default Profile;
+export default About;

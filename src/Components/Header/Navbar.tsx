@@ -1,6 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import Logo from '../../assets/icons/acodexm.png';
 import styled, { css, keyframes } from 'styled-components';
+import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
+import { backgroundColor, highlightColor, linkColor, textColor } from '../../themes/colors';
 interface Section {
   name: string;
   scrollTo(): void;
@@ -8,6 +11,7 @@ interface Section {
 interface Props {
   sticky: boolean;
   sections: Section[];
+  onChangeTheme(): void;
 }
 const moveDown = keyframes`
   from {
@@ -21,23 +25,89 @@ const Nav = styled.nav<{ sticky: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-transform: uppercase;
+  background-color: ${backgroundColor};
   padding: 0.5rem 2.5rem;
   position: absolute;
-  z-index: 1;
+  z-index: 10;
+  height: 10vh;
   width: 100%;
   ${({ sticky }) =>
     sticky
       ? css`
-          background: #333;
           position: fixed;
           top: 0;
           left: 0;
           box-shadow: 1px 1px 1px #222;
           animation: ${moveDown} 0.5s ease-in-out;
         `
-      : ''}
+      : ''};
+  @media (max-width: 1000px) {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 `;
 
+const Toggle = styled.div`
+  display: none;
+  height: 100%;
+  cursor: pointer;
+  @media (max-width: 1000px) {
+    display: flex;
+  }
+`;
+const Navbox = styled.div<{ open?: boolean }>`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  z-index: 1;
+
+  ul {
+    @media (max-width: 1000px) {
+      flex-direction: column;
+      position: absolute;
+      width: 100%;
+      justify-content: flex-start;
+      background-color: ${backgroundColor};
+      transition: all 0.3s ease-in-out;
+      left: 0;
+      box-shadow: 1px 1px 1px #222;
+      top: ${(props) => (props.open ? '8vh' : '-20vh')};
+    }
+  }
+`;
+
+const Hamburger = styled.div<{ open?: boolean }>`
+  background-color: ${textColor};
+  width: 30px;
+  height: 3px;
+  transition: all 0.3s linear;
+  align-self: center;
+  position: relative;
+  transform: ${(props) => (props.open ? 'rotate(-45deg)' : 'inherit')};
+
+  ::before,
+  ::after {
+    width: 30px;
+    height: 3px;
+    background-color: ${textColor};
+    content: '';
+    position: absolute;
+    transition: all 0.3s linear;
+  }
+
+  ::before {
+    transform: ${(props) => (props.open ? 'rotate(-90deg) translate(-10px, 0px)' : 'rotate(0deg)')};
+    top: -10px;
+  }
+
+  ::after {
+    opacity: ${(props) => (props.open ? '0' : '1')};
+    transform: ${(props) => (props.open ? 'rotate(90deg) ' : 'rotate(0deg)')};
+    top: 10px;
+  }
+`;
 const rotate = keyframes`
   0% {
     transform: rotateY(360deg);
@@ -67,20 +137,63 @@ const NavLinks = styled.ul`
     cursor: pointer;
   }
 `;
-const Navbar: FunctionComponent<Props> = ({ sticky, sections }) => {
+const NavLink = styled.li`
+  text-decoration: none;
+  color: ${linkColor};
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0 1vw;
+  transition: all 200ms ease-in;
+  position: relative;
+
+  :after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    content: '.';
+    color: transparent;
+    background: ${highlightColor};
+    height: 1px;
+    transition: all 0.4s ease-in;
+  }
+
+  :hover {
+    color: ${highlightColor};
+    ::after {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    padding: 20px 0;
+    font-size: 1.5rem;
+    z-index: 6;
+  }
+`;
+const Navbar: FunctionComponent<Props> = ({ sticky, sections, onChangeTheme }) => {
+  const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <Nav sticky={sticky}>
+      <Toggle onClick={() => setNavbarOpen(!navbarOpen)}>{navbarOpen ? <Hamburger open /> : <Hamburger />}</Toggle>
       <NavLogo>
         {sticky ? <img src={Logo} alt="logo" className="navbar--logo" /> : null}
         <h1> Acodexm</h1>
       </NavLogo>
-      <NavLinks>
-        {sections.map(({ name, scrollTo }, i) => (
-          <li key={i} onClick={scrollTo}>
-            {name}
-          </li>
-        ))}
-      </NavLinks>
+      <Navbox open={navbarOpen}>
+        <NavLinks>
+          {sections.map(({ name, scrollTo }, i) => (
+            <NavLink key={i} onClick={scrollTo}>
+              {name}
+            </NavLink>
+          ))}
+        </NavLinks>
+      </Navbox>
+      <div style={{display:'flex'}}>
+        <ThemeToggle onChangeTheme={onChangeTheme} />
+        <LanguageToggle />
+      </div>
     </Nav>
   );
 };
