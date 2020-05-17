@@ -12,18 +12,52 @@ exports[`check custom validators should validate isRequired 5`] = `undefined`;
 
 exports[`check custom validators should validate isRequired 6`] = `undefined`;
 
-exports[`check custom validators should validate isRequired 7`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 7`] = `"This field is required"`;
 
-exports[`check custom validators should validate isRequired 8`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 8`] = `"This field is required"`;
 
-exports[`check custom validators should validate isRequired 9`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 9`] = `"This field is required"`;
 
-exports[`check custom validators should validate isRequired 10`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 10`] = `"This field is required"`;
 
-exports[`check custom validators should validate isRequired 11`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 11`] = `"This field is required"`;
 
-exports[`check custom validators should validate isRequired 12`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 12`] = `"This field is required"`;
 
-exports[`check custom validators should validate isRequired 13`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 13`] = `"This field is required"`;
 
-exports[`check custom validators should validate isRequired 14`] = `"validation.edit.required"`;
+exports[`check custom validators should validate isRequired 14`] = `"This field is required"`;
+
+exports[`check custom validators should validate maxLength 1`] = `undefined`;
+
+exports[`check custom validators should validate maxLength 2`] = `"validation.max"`;
+
+exports[`check custom validators should validate maxLength 3`] = `undefined`;
+
+exports[`check custom validators should validate maxValue 1`] = `undefined`;
+
+exports[`check custom validators should validate maxValue 2`] = `"validation.max.num"`;
+
+exports[`check custom validators should validate maxValue 3`] = `undefined`;
+
+exports[`check custom validators should validate minLength 1`] = `undefined`;
+
+exports[`check custom validators should validate minLength 2`] = `"validation.min"`;
+
+exports[`check custom validators should validate minLength 3`] = `undefined`;
+
+exports[`check custom validators should validate minValue 1`] = `undefined`;
+
+exports[`check custom validators should validate minValue 2`] = `"validation.min.num"`;
+
+exports[`check custom validators should validate minValue 3`] = `undefined`;
+
+exports[`check custom validators should validate mustBeEmail 1`] = `"Wrong email address"`;
+
+exports[`check custom validators should validate mustBeEmail 2`] = `"Wrong email address"`;
+
+exports[`check custom validators should validate mustBeEmail 3`] = `undefined`;
+
+exports[`check custom validators should validate mustBeNumber 1`] = `undefined`;
+
+exports[`check custom validators should validate mustBeNumber 2`] = `"validation.number"`;

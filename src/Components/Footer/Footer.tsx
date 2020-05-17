@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { backgroundColor, textColor } from '../../themes/colors';
+import { useTranslation } from 'react-i18next';
 
-const getMessage = (msg: string) => msg;
+const t = (msg: string) => msg;
 
 const SFooter = styled.footer`
   a {
@@ -17,9 +18,11 @@ const SFooter = styled.footer`
 `;
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <SFooter>
-      <a href="https://github.com/acodexm">{getMessage('my.github')}</a>
+      <a href="https://github.com/acodexm">{t('my.github')}</a>
     </SFooter>
   );
 };

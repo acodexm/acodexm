@@ -1,15 +1,7 @@
-import {
-  isRequired,
-  maxLength,
-  maxValue,
-  minLength,
-  minValue,
-  mustBeEmail,
-  mustBeNumber,
-} from '../validator';
+import { isRequired, maxLength, maxValue, minLength, minValue, mustBeEmail, mustBeNumber } from '../validator';
 
 describe('check custom validators', () => {
-
+  beforeAll(() => require('../../../../i18n'));
   it('should validate isRequired', () => {
     expect(isRequired(false)()).toMatchSnapshot();
     expect(isRequired(false)('')).toMatchSnapshot();

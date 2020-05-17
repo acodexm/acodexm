@@ -15,6 +15,7 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin: 1rem;
   .line_dots {
     width: 4px;
     height: 54.569px;

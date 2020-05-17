@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import Logo from '../../assets/icons/acodexm.png';
 import styled, { css, keyframes } from 'styled-components';
 import ThemeToggle from './ThemeToggle';
@@ -42,11 +42,6 @@ const Nav = styled.nav<{ sticky: boolean }>`
           animation: ${moveDown} 0.5s ease-in-out;
         `
       : ''};
-  @media (max-width: 1000px) {
-    top: 0;
-    left: 0;
-    right: 0;
-  }
 `;
 
 const Toggle = styled.div`
@@ -59,22 +54,21 @@ const Toggle = styled.div`
 `;
 const Navbox = styled.div<{ open?: boolean }>`
   display: flex;
-  height: 100%;
+  height: auto;
   align-items: center;
-  z-index: 1;
-
-  ul {
-    @media (max-width: 1000px) {
+  @media (max-width: 1000px) {
+    ul {
       flex-direction: column;
-      position: absolute;
-      width: 100%;
       justify-content: flex-start;
-      background-color: ${backgroundColor};
-      transition: all 0.3s ease-in-out;
-      left: 0;
-      box-shadow: 1px 1px 1px #222;
-      top: ${(props) => (props.open ? '8vh' : '-20vh')};
+      width: 100%;
     }
+    position: absolute;
+    width: 100%;
+    background-color: ${backgroundColor};
+    transition: all 0.3s ease-in-out;
+    left: 0;
+    top: 8vh;
+    display: ${(props) => (props.open ? 'flex' : 'none')};
   }
 `;
 
@@ -120,7 +114,9 @@ const NavLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   img {
+    border-radius: 50%;
     width: 2rem;
     height: 2rem;
     margin-right: 0.5rem;
@@ -174,10 +170,11 @@ const NavLink = styled.li`
 `;
 const Navbar: FunctionComponent<Props> = ({ sticky, sections, onChangeTheme }) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  useEffect(() => setNavbarOpen(false), [sticky]);
   return (
     <Nav sticky={sticky}>
       <Toggle onClick={() => setNavbarOpen(!navbarOpen)}>{navbarOpen ? <Hamburger open /> : <Hamburger />}</Toggle>
-      <NavLogo>
+      <NavLogo onClick={() => window.scrollTo({ top: 0, left: 0 })}>
         {sticky ? <img src={Logo} alt="logo" className="navbar--logo" /> : null}
         <h1> Acodexm</h1>
       </NavLogo>
@@ -190,7 +187,7 @@ const Navbar: FunctionComponent<Props> = ({ sticky, sections, onChangeTheme }) =
           ))}
         </NavLinks>
       </Navbox>
-      <div style={{display:'flex'}}>
+      <div style={{ display: 'flex' }}>
         <ThemeToggle onChangeTheme={onChangeTheme} />
         <LanguageToggle />
       </div>

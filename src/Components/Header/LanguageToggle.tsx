@@ -1,22 +1,33 @@
 import React, { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Toggle from 'react-toggle';
-// import { ReactComponent as Pl } from 'svg-country-flags/svg/pl.svg';
-// import { ReactComponent as En } from 'svg-country-flags/svg/en.svg';
+import ReactToggle from 'react-toggle';
+import pl from '../../assets/svg/pl.svg';
+import en from '../../assets/svg/en.svg';
+import styled from 'styled-components';
 
 enum Language {
   English = 'en',
   Polski = 'pl'
 }
+const Toggle = styled.div`
+  .react-toggle-track {
+    background-image: url(${pl});
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+  .react-toggle--checked {
+    .react-toggle-track {
+      background-image: url(${en});
+      background-repeat: no-repeat;
+    }
+  }
+`;
 
-const LanguageToggle: FunctionComponent<{}> = () => {
+const LanguageToggle: FunctionComponent = () => {
   const { i18n } = useTranslation();
-  const [state, setState] = useState(false);
 
-  const onToggle = (event: any) => {
-    console.log(event);
-    // setState(event);
-    // i18n.changeLanguage(event ? Language.Polski : Language.English);
+  const onToggle = () => {
+    i18n.changeLanguage(i18n.language === Language.English ? Language.Polski : Language.English);
   };
 
   function changeLanguage(lng: Language) {
@@ -26,14 +37,9 @@ const LanguageToggle: FunctionComponent<{}> = () => {
   }
 
   return (
-    <Toggle
-      defaultChecked={state}
-      // icons={{
-      //   checked: <Pl />,
-      //   unchecked: <En />
-      // }}
-      onChange={onToggle}
-    />
+    <Toggle>
+      <ReactToggle defaultChecked={false} icons={false} onChange={onToggle} />
+    </Toggle>
   );
 };
 

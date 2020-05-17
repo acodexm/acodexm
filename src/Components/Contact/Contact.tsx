@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react';
 import { Field, Form } from 'react-final-form';
 import createDecorator from 'final-form-focus';
 import { composeValidators, isRequired, mustBeEmail } from '../FinalForm/validator/validator';
-import { getMessage } from '../../i18n';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 import SectionTitle from '../Section/SectionTitle';
 import emailjs from 'emailjs-com';
 import { ContactSection, FormInput, FormReCaptcha, FormTextarea, SubmitButton } from './ContactStyles';
+import { useTranslation } from 'react-i18next';
 
 emailjs.init(process.env.REACT_APP_EMAILJS_USER_ID || 'user_CE0Pjg4Iq1GYpRoSolxiG');
 
@@ -17,7 +17,6 @@ interface Props {
 }
 export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
   const onSubmit = (values: any) => {
-    console.log(values);
     emailjs.send('gmail', 'acodexm', values).then(
       (result) => {
         console.log(result.text);
@@ -27,9 +26,11 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
       }
     );
   };
+  const { t } = useTranslation();
+
   return (
     <ContactSection ref={sectionRef}>
-      <SectionTitle title={getMessage('section.title.contact')} />
+      <SectionTitle title={t('section.title.contact')} />
       <Container fluid>
         <Form
           onSubmit={onSubmit}
@@ -39,24 +40,24 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
               <Row>
                 <Col lg={4} sm={12}>
                   <Field name="from_name" validate={isRequired()}>
-                    {(field) => <FormInput {...field} placeholder={getMessage('contact.name')} />}
+                    {(field) => <FormInput {...field} placeholder={t('contact.name')} />}
                   </Field>
                 </Col>
                 <Col lg={4} sm={12}>
                   <Field name="from_email" validate={composeValidators(mustBeEmail, isRequired())}>
-                    {(field) => <FormInput {...field} type="email" placeholder={getMessage('contact.email')} />}
+                    {(field) => <FormInput {...field} type="email" placeholder={t('contact.email')} />}
                   </Field>
                 </Col>
                 <Col lg={4} sm={12}>
                   <Field name="subject" validate={isRequired()}>
-                    {(field) => <FormInput {...field} placeholder={getMessage('contact.subject')} />}
+                    {(field) => <FormInput {...field} placeholder={t('contact.subject')} />}
                   </Field>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <Field name="message_html" validate={isRequired()}>
-                    {(field) => <FormTextarea {...field} type="textarea" placeholder={'dup'} />}
+                    {(field) => <FormTextarea {...field} type="textarea" placeholder={t('contact.message')} />}
                   </Field>
                 </Col>
               </Row>
@@ -64,7 +65,7 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
                 {(field) => <FormReCaptcha {...field} />}
               </Field>
               <SubmitButton className="btn btn-success roboto" type="submit" disabled={submitting}>
-                {getMessage('contact.send')}
+                {t('contact.send')}
               </SubmitButton>
             </form>
           )}

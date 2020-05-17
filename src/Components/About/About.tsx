@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Container, Col, Row } from 'styled-bootstrap-grid';
 import SectionTitle from '../Section/SectionTitle';
 import Section from '../Section/Section';
-import { getMessage } from '../../i18n';
 import { cardColor, section2Color } from '../../themes/colors';
+import { useTranslation } from 'react-i18next';
 
 const AboutSection = styled(Section)`
   background-color: ${section2Color};
@@ -22,27 +22,28 @@ const CardContent = styled.div`
   padding: 15px;
 `;
 interface Props {
-  sectionRef:React.RefObject<HTMLElement>
+  sectionRef: React.RefObject<HTMLElement>;
 }
-const About:FunctionComponent<Props> = ({sectionRef}) => {
+const About: FunctionComponent<Props> = ({ sectionRef }) => {
+  const { t } = useTranslation();
   return (
     <AboutSection ref={sectionRef}>
-      <SectionTitle title={getMessage('section.title.about')}/>
+      <SectionTitle title={t('section.title.about')} />
       <Container>
         <Row>
           <Col xs={12} md={6} lg={6}>
             <Card>
               <CardContent>
-                <h3>{getMessage('general.programing')}</h3>
-                {getMessage('about.programing')}
+                <h3>{t('general.programing')}</h3>
+                {t('about.programing')}
               </CardContent>
             </Card>
           </Col>
           <Col xs={12} md={6} lg={6}>
             <Card>
               <CardContent>
-                <h3>{getMessage('general.sports')}</h3>
-                {getMessage('about.sports')}
+                <h3>{t('general.sports')}</h3>
+                {t('about.sports')}
               </CardContent>
             </Card>
           </Col>
@@ -51,16 +52,16 @@ const About:FunctionComponent<Props> = ({sectionRef}) => {
           <Col xs={12} md={6} lg={6}>
             <Card>
               <CardContent>
-                <h3>{getMessage('general.about')}</h3>
-                {getMessage('about.me')}
+                <h3>{t('general.about')}</h3>
+                {t('about.me')}
               </CardContent>
             </Card>
           </Col>
           <Col xs={12} md={6} lg={6}>
             <Card>
               <CardContent>
-                <h3>{getMessage('general.hobby')}</h3>
-                {getMessage('about.hobby')}
+                <h3>{t('general.hobby')}</h3>
+                {t('about.hobby')}
               </CardContent>
             </Card>
           </Col>

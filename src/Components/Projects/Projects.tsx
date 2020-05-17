@@ -1,11 +1,12 @@
 import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import SectionTitle from '../Section/SectionTitle';
-import { getMessage } from '../../i18n';
+
 import Section from '../Section/Section';
 import axios from 'axios';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { cardColor, section2Color } from '../../themes/colors';
+import { useTranslation } from 'react-i18next';
 
 const ProjectsSection = styled(Section)`
   background-color: ${section2Color};
@@ -32,7 +33,7 @@ const Card = styled.div`
 const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
   const [projects, setProjects] = useState<any[]>([]);
   const [{ loading, error }, setState] = useState({ loading: true, error: false });
-  const list = useMemo(() => projects.filter((obj) => filterByDate(obj.updated_at)), [projects]);
+  const list = useMemo(() => projects.filter((obj) => filterByDate(obj.updated_at)).splice(3), [projects]);
 
   const getRepos = () => {
     setState({ loading: true, error: false });
@@ -49,10 +50,11 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
   useEffect(() => {
     getRepos();
   }, []);
+  const { t } = useTranslation();
 
   return (
     <ProjectsSection ref={sectionRef}>
-      <SectionTitle title={getMessage('section.title.projects')} />
+      <SectionTitle title={t('section.title.projects')} />
       {loading && 'loading...'}
       {error && 'Request error'}
       {!loading && !error && (
@@ -64,7 +66,7 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
                   <h3>{item.name}</h3>
                   {item.description}
                   <br />
-                  <a href={item.html_url}>{getMessage('general.github.link')}</a>
+                  <a href={item.html_url}>{t('general.github.link')}</a>
                 </Card>
               </Col>
             ))}

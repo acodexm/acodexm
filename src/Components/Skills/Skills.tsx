@@ -11,9 +11,10 @@ import redux from '../../assets/icons/redux.png';
 import spring from '../../assets/icons/spring.png';
 import styled from 'styled-components';
 import SectionTitle from '../Section/SectionTitle';
-import { getMessage } from '../../i18n';
+
 import Section from '../Section/Section';
 import { section1Color } from '../../themes/colors';
+import { useTranslation } from 'react-i18next';
 
 const icons = [
   {
@@ -70,9 +71,11 @@ interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
 const Skills: FunctionComponent<Props> = ({ sectionRef }) => {
+  const { t } = useTranslation();
+
   return (
     <SkillsSection ref={sectionRef}>
-      <SectionTitle title={getMessage('section.title.skills')} />
+      <SectionTitle title={t('section.title.skills')} />
       <Waves items={icons} />
     </SkillsSection>
   );
