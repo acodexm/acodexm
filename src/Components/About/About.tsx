@@ -14,13 +14,13 @@ const Card = styled.div`
   border-radius: 1rem;
   border-color: coral;
   border-width: thick;
+  min-width: 25vh;
+  min-height: 20vh;
+  padding: 2rem;
   margin: 2rem;
-  padding: 1rem;
-  background-color: ${cardColor};
+  background-image: ${cardColor};
 `;
-const CardContent = styled.div`
-  padding: 15px;
-`;
+
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
@@ -31,38 +31,30 @@ const About: FunctionComponent<Props> = ({ sectionRef }) => {
       <SectionTitle title={t('section.title.about')} />
       <Container>
         <Row>
-          <Col xs={12} md={6} lg={6}>
+          <Col col>
             <Card>
-              <CardContent>
-                <h3>{t('general.programing')}</h3>
-                {t('about.programing')}
-              </CardContent>
+              <h3>{t('general.programing')}</h3>
+              {t('about.programing')}
             </Card>
           </Col>
-          <Col xs={12} md={6} lg={6}>
+          <Col col>
             <Card>
-              <CardContent>
-                <h3>{t('general.sports')}</h3>
-                {t('about.sports')}
-              </CardContent>
+              <h3>{t('general.sports')}</h3>
+              {t('about.sports')}
             </Card>
           </Col>
         </Row>
         <Row>
-          <Col xs={12} md={6} lg={6}>
+          <Col col>
             <Card>
-              <CardContent>
-                <h3>{t('general.about')}</h3>
-                {t('about.me')}
-              </CardContent>
+              <h3>{t('general.about')}</h3>
+              {t('about.me')}
             </Card>
           </Col>
-          <Col xs={12} md={6} lg={6}>
+          <Col col>
             <Card>
-              <CardContent>
-                <h3>{t('general.hobby')}</h3>
-                {t('about.hobby')}
-              </CardContent>
+              <h3>{t('general.hobby')}</h3>
+              {t('about.hobby')}
             </Card>
           </Col>
         </Row>

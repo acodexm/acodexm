@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import Logo from '../../assets/icons/acodexm.png';
+import Logo from '../../assets/images/acodexm.png';
 import styled, { css, keyframes } from 'styled-components';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';

@@ -12,8 +12,8 @@ export const section2Color = theme('mode', {
   dark: '#424242'
 });
 export const cardColor = theme('mode', {
-  light: '#147eff',
-  dark: '#af4519'
+  light: `linear-gradient(${'#00cfff'}, ${'#007dff'})`,
+  dark: `linear-gradient(${'#ff5900'}, ${'#712700'})`
 });
 export const textColor = theme('mode', {
   light: '#1f1f1f',
@@ -34,4 +34,8 @@ export const linkColor = theme('mode', {
 export const highlightColor = theme('mode', {
   light: 'goldenrod',
   dark: 'goldenrod'
+});
+export const invertColor = theme('mode', {
+  light: 'invert()',
+  dark: 'unset'
 });

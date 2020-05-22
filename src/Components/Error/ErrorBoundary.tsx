@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo } from 'react';
-import error from '../../assets/icons/error.png';
+import error from '../../assets/images/error.png';
 import styled from 'styled-components';
 
 const Error = styled.div`

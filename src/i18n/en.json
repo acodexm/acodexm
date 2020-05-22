@@ -31,13 +31,23 @@
       "sports": "Sports",
       "programing": "Programming",
       "about": "About me",
-      "me": "Acodexm"
+      "me": "Acodexm",
+      "github": "Github"
     },
     "contact": {
       "send": "Send",
-      "subject": "Subject: I'm interested in hiring you... ",
-      "email": "E-mail: head.hunter@dream.company.com",
-      "name": "Name: Dream Company"
+      "subject": "I'm interested in hiring you... ",
+      "email": "head.hunter@dream.company.com",
+      "name": "Dream Company"
+    },
+    "edu": {
+      "boot": "Boot Camp",
+      "academy": "Academy of Code",
+      "highschool": "XLVIII High School. Edwarda Dembowskiego",
+      "schoolprofile": "IT Profile",
+      "university": "Warsaw University of Technology",
+      "belhior": "ELECTRICAL ENGENEER",
+      "master": "COMPUTER SCIENCE"
     },
     "validation": {
       "edit": {

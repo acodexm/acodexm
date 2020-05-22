@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import Waves from '../Education/Waves/Waves';
+import Waves from './Waves';
 import android from '../../assets/icons/android.png';
 import IntelliJ from '../../assets/icons/IntelliJ.png';
 import java from '../../assets/icons/java.png';

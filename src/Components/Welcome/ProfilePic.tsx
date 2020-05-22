@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import acodexm from '../../assets/icons/acodexm.png';
+import acodexm from '../../assets/images/acodexm.png';
 import styled from 'styled-components';
 interface OwnProps {}
 

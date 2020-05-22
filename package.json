@@ -84,8 +84,8 @@
     "@types/styled-theming": "^2.2.2",
     "delay": "^4.3.0",
     "gh-pages": "^2.2.0",
-    "node-sass": "^4.13.1",
     "husky": "^4.2.5",
+    "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "typescript": "~3.8.3"
