@@ -16,9 +16,10 @@ import Work from './Components/Work/Work';
 import { useTranslation } from 'react-i18next';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSetStateWithStorage } from './hooks/useSetState';
 
 const App = () => {
-  const [state, setState] = useState({ mode: 'dark' });
+  const [state, setState] = useSetStateWithStorage({ mode: 'dark' }, 'APPLICATION_THEME');
   const { t } = useTranslation();
   const { sticky, element } = useSticky();
 

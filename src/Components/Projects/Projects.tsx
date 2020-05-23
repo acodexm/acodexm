@@ -6,7 +6,7 @@ import github_bg from '../../assets/images/github.png';
 import Section from '../Section/Section';
 import axios from 'axios';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
-import { cardColor, section2Color } from '../../themes/colors';
+import { cardColor, section2Color, textColor } from '../../themes/colors';
 import { useTranslation } from 'react-i18next';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -40,14 +40,15 @@ const Github = styled.div`
   margin: 2rem;
 `;
 const Card = styled.div`
-  color: white;
+  color: ${textColor};
   min-height: 20vh;
   min-width: 25vh;
   cursor: pointer;
   border-radius: 2rem;
-  background-image: url(${project_bg});
+  background-image: ${cardColor}, url(${project_bg});
   background-repeat: no-repeat;
   background-position: center;
+  background-blend-mode: exclusion;
   background-size: cover;
   padding: 2rem;
   margin: 2rem;
@@ -93,7 +94,9 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
                 </Card>
               </Col>
             ))}
-            <Github onClick={() => window.open('https://github.com/acodexm/repositories', '_blank')} />
+            <Col col>
+              <Github onClick={() => window.open('https://github.com/acodexm/repositories', '_blank')} />
+            </Col>
           </Row>
         </Container>
       )}

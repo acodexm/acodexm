@@ -20,6 +20,10 @@
         "contact": "Kontakt"
       }
     },
+    "welcome": {
+      "hello": "Cześć jestem",
+      "dev": "Kreatywny Web developer"
+    },
     "about": {
       "hobby": "W wolnym czasie poświęcam się podróżowaniu. Autostopem, podróżowałem przez połowę Europy i nie zamierzam się tam zatrzymać. Staram się być na bieżąco z innowacjami technicznymi.",
       "sports": "Prywatnie jestem instruktorem windsurfingu i snowboardu. Codziennie jest uzależniony od sportu i adrenaliny. Aktywne wycieczki i podróże dają mi siłę do działania.\n",
@@ -35,9 +39,23 @@
     },
     "contact": {
       "send": "Wyślij",
-      "subject": "Subject: I'm interested in hiring you... ",
-      "email": "E-mail: head.hunter@dream.company.com",
-      "name": "Name: Dream Company"
+      "subject": "Mam ofertę pracy... ",
+      "email": "name@dream.company.com",
+      "name": "Firma marzeń",
+      "message": "Wiadomość"
+    },
+    "edu": {
+      "boot": "Boot Camp",
+      "academy": "Akademia kodu",
+      "highschool": "XLVIII LO imienia Edwarda Dembowskiego",
+      "schoolprofile": "Profil IT",
+      "university": "Politechnika Warszawska",
+      "belhior": "INŻYNIER ELEKTROTECHNIKI",
+      "master": "INŻYNIERIA OPROGRAMOWANIA"
+    },
+    "work": {
+      "experience": "Lata pracy",
+      "practice": "Lat doświadczenia programisty"
     },
     "validation": {
       "edit": {

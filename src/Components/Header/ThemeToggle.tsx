@@ -3,6 +3,7 @@ import ReactToggle from 'react-toggle';
 import styled from 'styled-components';
 import moon from '../../assets/svg/moon.svg';
 import sun from '../../assets/svg/sun.svg';
+import LocalStorage from '../../utils/localStorage';
 
 const Toggle = styled.div`
   margin: auto 1rem;
@@ -27,14 +28,14 @@ const Toggle = styled.div`
     }
   }
 `;
+const isChecked = () => (LocalStorage.getItem('APPLICATION_THEME') || { mode: 'dark' }).mode === 'dark';
 const ThemeToggle: FunctionComponent<{ onChangeTheme(): void }> = ({ onChangeTheme }) => {
   const onToggle = () => {
     onChangeTheme();
   };
-
   return (
     <Toggle>
-      <ReactToggle defaultChecked={false} icons={false} onChange={onToggle} />
+      <ReactToggle defaultChecked={isChecked()} icons={false} onChange={onToggle} />
     </Toggle>
   );
 };

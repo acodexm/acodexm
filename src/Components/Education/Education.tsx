@@ -1,15 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import styled, { DefaultTheme } from 'styled-components';
+import styled from 'styled-components';
 import SectionTitle from '../Section/SectionTitle';
 import edu_lines from '../../assets/images/edu_lines.png';
+import net from '../../assets/images/net.png';
+import network from '../../assets/svg/network.svg';
 import Section from '../Section/Section';
 import { cardColor, invertColor, section2Color } from '../../themes/colors';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
+import theme from 'styled-theming';
 
 const EduSection = styled(Section)`
   background-color: ${section2Color};
-  min-height: 50vh;
 `;
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;

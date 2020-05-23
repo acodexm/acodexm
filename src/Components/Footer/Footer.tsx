@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { backgroundColor, textColor } from '../../themes/colors';
-import { useTranslation } from 'react-i18next';
+import Social from '../Social/Social';
 
 const t = (msg: string) => msg;
 
@@ -18,11 +18,9 @@ const SFooter = styled.footer`
 `;
 
 const Footer = () => {
-  const { t } = useTranslation();
-
   return (
     <SFooter>
-      <a href="https://github.com/acodexm">{t('my.github')}</a>
+      <Social />
     </SFooter>
   );
 };

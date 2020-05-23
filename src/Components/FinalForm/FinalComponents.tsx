@@ -1,56 +1,86 @@
-import React, { ReactNode } from 'react';
-import { Field, FieldRenderProps } from 'react-final-form';
-import createDecorator from 'final-form-calculate';
-import { get } from 'lodash';
-import { errorMsg, isInvalid, isValid } from './validator/validator';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FieldRenderProps } from 'react-final-form';
+import { errorMsg, isInvalid } from './validator/validator';
 import styled from 'styled-components';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { errorColor, validColor } from '../../themes/colors';
+import { autocompleteFieldColor, errorColor, fieldColor, inputTextColor, textColor } from '../../themes/colors';
 
-interface Condition {
-  when: string;
-  is: any;
-  isNot: any;
-  children: ReactNode;
-}
-interface Remove {
-  when: string;
-  is: any;
-  isNot: any;
-  children: ReactNode;
-}
-interface Input extends React.HTMLProps<HTMLInputElement> {
-  invalid?: boolean | undefined;
-  valid?: boolean | undefined;
-}
-interface CustomInput extends React.HTMLProps<HTMLInputElement> {
-  invalid?: boolean | undefined;
-}
-
-const Input = styled.input<Input>`
+const FancyInput = styled.div`
+  width: 100%;
+  margin-bottom: 1rem;
+  text-align: left;
+  transition: 500ms;
+  color: ${inputTextColor};
+  label {
+    font-size: 1.2rem;
+    position: absolute;
+    left: 2rem;
+    opacity: 50%;
+    top: 0.4rem;
+    pointer-events: none;
+    transition: all 400ms;
+  }
+  textarea,
+  input {
+    &:focus,
+    &:not(:placeholder-shown),
+    &:-webkit-autofill {
+      & + label {
+        top: -2rem;
+        left: 1rem;
+        opacity: 80%;
+        font-size: 1rem;
+        font-weight: bold;
+        #placeholder {
+          visibility: hidden;
+        }
+      }
+    }
+  }
+`;
+const Input = styled.input`
   height: 3rem;
+  outline: none;
+  overflow: hidden;
+  padding: 1rem;
   width: 100%;
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus {
+    -webkit-text-fill-color: ${textColor};
+    -webkit-box-shadow: 0 0 0px 1000px ${autocompleteFieldColor} inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  background-color: transparent;
+  background-image: ${fieldColor};
+  font-size: 1.2em;
+  font-weight: bold;
   cursor: text;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 0.25rem;
-  box-shadow: ${({ invalid, valid }) => (invalid ? errorColor : valid ? validColor : '')};
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  border-color: ${({ invalid, valid }) => (invalid ? errorColor : valid ? validColor : '')};
+  border: none;
+  border-radius: 0.5rem;
+  color: ${inputTextColor};
 `;
-const Textarea = styled.textarea<Input>`
+const Textarea = styled.textarea`
   height: 8rem;
+  padding: 1rem;
   width: 100%;
   cursor: text;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 0.25rem;
-  box-shadow: ${({ invalid, valid }) => (invalid ? 'red' : valid ? 'green' : '')};
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  border-color: ${({ invalid, valid }) => (invalid ? errorColor : valid ? validColor : '')};
-`;
-const CustomInput = styled.input<CustomInput>`
-  outline-color: ${({ invalid }) => (invalid ? errorColor : '')};
+  font-size: 1.2em;
+  font-weight: bold;
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus {
+    -webkit-text-fill-color: ${textColor};
+    -webkit-box-shadow: 0 0 0px 1000px ${autocompleteFieldColor} inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  resize: vertical;
+  background-color: transparent;
+  background-image: ${fieldColor};
+  color: ${inputTextColor};
 `;
 
 const Counter = styled.span`
@@ -58,105 +88,86 @@ const Counter = styled.span`
   margin-top: 1px;
   font-size: 11px;
   line-height: 11px;
-  color: darkgray;
-  width: 100%;
   text-align: end;
 `;
 const ErrorMsg = styled.span<{ visible?: boolean }>`
   display: ${(props) => (props.visible ? 'block' : 'none')};
+  position: relative;
+  left: 1rem;
+  top: 0;
   color: ${errorColor};
 `;
-export const Condition = ({ when, is, isNot, children }: Condition) => (
-  <Field name={when} subscription={{ value: true }}>
-    {({ input: { value } }) => {
-      if (!value) return null;
-      if (is) return JSON.stringify(value) === JSON.stringify(is) ? children : null;
-      return JSON.stringify(value) !== JSON.stringify(isNot) ? children : null;
-    }}
-  </Field>
-);
-export const FinalCheckbox = ({ input, meta, label, withErrorMessage, id, ...rest }: FieldRenderProps<any>) => (
-  <>
-    <label htmlFor={id}>{label}</label>
-    <CustomInput
-      id={id}
-      invalid={isInvalid(meta)}
-      {...input}
-      disabled={meta.submitting || (meta.data && meta.data.disabled)}
-      {...rest}
-    />
-    <ErrorMsg visible={withErrorMessage && isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
-  </>
-);
-export const FinalInput = ({ className, input, meta, maxLength, ...rest }: FieldRenderProps<any>) => (
-  <div className={className}>
+
+export const FinalInput = ({
+  name,
+  label,
+  className,
+  input,
+  meta,
+  maxLength,
+  placeholder,
+  ...rest
+}: FieldRenderProps<any>) => (
+  <FancyInput className={className}>
     <Input
-      valid={isValid(input, meta)}
-      invalid={isInvalid(meta)}
+      name={name}
       {...input}
+      placeholder={' '}
       disabled={meta.submitting || (meta.data && meta.data.disabled)}
       {...rest}
       maxLength={maxLength}
     />
+    <label htmlFor={name}>
+      {label}
+      <span id="placeholder">{placeholder ? `: ${placeholder}` : ''}</span>
+    </label>
     <Counter>{maxLength && `${input.value.length || 0}/${maxLength}`}</Counter>
     <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
-  </div>
+  </FancyInput>
 );
 
-export const FinalReCaptcha = ({ className, input, meta, theme }: FieldRenderProps<any>) => (
-  <div className={className}>
-    <ReCAPTCHA
-      theme={theme}
-      sitekey={process.env.REACT_APP_RECAPTCHA_KEY || ''}
-      onChange={input.onChange}
-    />
-    <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
-  </div>
-);
-
-export const FinaTextarea = ({ className, input, meta, maxLength, ...rest }: FieldRenderProps<any>) => (
-  <div className={className}>
+export const FinaTextarea = ({
+  label,
+  placeholder,
+  className,
+  input,
+  meta,
+  maxLength,
+  name,
+  ...rest
+}: FieldRenderProps<any>) => (
+  <FancyInput className={className}>
     <Textarea
-      valid={isValid(input, meta)}
-      invalid={isInvalid(meta)}
+      name={name}
       {...input}
+      placeholder={' '}
       disabled={meta.submitting || (meta.data && meta.data.disabled)}
       {...rest}
       maxLength={maxLength}
     />
+    <label htmlFor={name}>
+      {label}
+      <span id="placeholder">{`: ${placeholder || ''}`}</span>
+    </label>
     <Counter>{maxLength && `${input.value.length || 0}/${maxLength}`}</Counter>
     <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
-  </div>
+  </FancyInput>
 );
-export const removeField = (when: string, field: string, is: any, isNot: any) =>
-  createDecorator({
-    field: when,
-    updates: {
-      [field]: (value: any, allValues: any[]) => {
-        if (is) return JSON.stringify(value) === JSON.stringify(is) ? get(allValues, field) : undefined;
-        return JSON.stringify(value) !== JSON.stringify(isNot) ? get(allValues, field) : undefined;
-      }
-    }
-  });
-interface SubmitError {
-  submitError: string[] | string;
-  defaultMsg: string;
-  key: any;
-  className: string;
+interface Theme {
+  mode?: 'light' | 'dark' | undefined;
 }
-// export const SubmitError: React.FC<SubmitError> = ({ key, submitError, defaultMsg, className }) => {
-//   let errorMessage = defaultMsg;
-//   if (!submitError) return null;
-//   if (Array.isArray(submitError))
-//     return submitError.map((err, i) => (
-//       <SubmitError key={i} submitError={err} defaultMsg={defaultMsg} className={className} />
-//     ));
-//
-//   if (submitError) errorMessage = submitError;
-//
-//   return (
-//     <div key={key} color="danger" className={className}>
-//       {errorMessage}
-//     </div>
-//   );
-// };
+type Props = FieldRenderProps<any> & Theme;
+
+export const FinalReCaptcha: FunctionComponent<Props> = ({ className, input, meta, mode }) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    // @ts-ignore
+    ref.current.reset();
+  }, [mode]);
+  return (
+    <div className={className}>
+      <ReCAPTCHA ref={ref} theme={mode} sitekey={process.env.REACT_APP_RECAPTCHA_KEY || ''} onChange={input.onChange} />
+      <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
+    </div>
+  );
+};

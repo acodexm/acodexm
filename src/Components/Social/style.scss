@@ -1,0 +1,76 @@
+$color-primary: #81c2de;
+$color-primary-light: #b4f5ff;
+$color-primary-dark: #4f92ac;
+
+$color-white: #fffbfa;
+
+$color-black: #191308;
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.4s ease-out;
+
+  &__links {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 90%;
+  }
+}
+
+.social-link {
+  &--linkedin {
+    color: #2d76b0;
+  }
+
+  &--github {
+    color: #000;
+  }
+
+  & .social-svg {
+    width: 4.8rem;
+    height: 4.8rem;
+
+    & .social-group {
+      &__icon {
+        fill: $color-black;
+        transition: all 0.2s;
+      }
+
+      &__inner-circle {
+        fill: transparent;
+        transition: all 0.2s;
+      }
+
+      &__outline {
+        stroke: $color-black;
+        transform-origin: 50% 50%;
+        transition: all 0.2s;
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      & .social-group {
+        &__icon {
+          fill: $color-white;
+          transition: all 0.45s;
+        }
+
+        &__inner-circle {
+          fill: currentColor;
+          transition: all 0.45s;
+        }
+
+        &__outline {
+          stroke: currentColor;
+          transform: scale(1.1);
+          transition: all 0.45s;
+        }
+      }
+    }
+  }
+}

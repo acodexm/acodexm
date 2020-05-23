@@ -2,47 +2,39 @@ import styled, { css } from 'styled-components';
 import Section from '../Section/Section';
 import { section1Color, textColor } from '../../themes/colors';
 import { FinalInput, FinalReCaptcha, FinaTextarea } from '../FinalForm/FinalComponents';
+import { contactBackground } from '../../themes/images';
 
-const ContactSection = styled(Section)`
+const ContactSection = styled.section`
   background-color: ${section1Color};
+  background-attachment: fixed;
+  background-size: cover;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${textColor};
+  text-align: center;
+  position: relative;
   min-height: 50vh;
-`;
-const placeholder = css`
-    :focus {
-      ::placeholder,
-      ::-webkit-input-placeholder {
-        color: transparent;
-      }
-      :-ms-input-placeholder {
-        color: transparent;
-      }
-    }
-    ::placeholder,
-    ::-webkit-input-placeholder {
-      color: white;
-    }
-    :-ms-input-placeholder {
-      color: white;
-    }`;
-const FormInput = styled(FinalInput)`
-  color: wheat;
-  margin: 0.7rem auto;
-  input {
-    padding: 1rem;
-    background-color: rgba(255, 119, 0, 0.47);
-    color: ${textColor};
-    ${placeholder}
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: ${contactBackground};
+    opacity: 30%;
   }
+`;
+const FormInput = styled(FinalInput)`
+  min-height: 5rem;
 `;
 const FormTextarea = styled(FinaTextarea)`
-  color: wheat;
-  margin: 0.7rem auto;
-  textarea {
-    padding: 1rem;
-    background-color: rgba(255, 119, 0, 0.47);
-    color: ${textColor};
-    ${placeholder}
-  }
+  min-height: 7rem;
 `;
 const FormReCaptcha = styled(FinalReCaptcha)`
   div {
@@ -59,5 +51,12 @@ const SubmitButton = styled.button`
   background-color: coral;
   border: 1px solid black;
   border-radius: 0.5rem;
+  ${(props) =>
+    props.disabled
+      ? css`
+          background-color: rgba(139, 139, 49, 0.53);
+          cursor: not-allowed;
+        `
+      : ''}
 `;
-export {FormReCaptcha,FormTextarea,FormInput,ContactSection,SubmitButton}
+export { FormReCaptcha, FormTextarea, FormInput, ContactSection, SubmitButton };

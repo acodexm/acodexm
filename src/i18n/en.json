@@ -20,6 +20,10 @@
         "contact": "Contact"
       }
     },
+    "welcome": {
+      "hello": "Hello I am",
+      "dev": "Creative Web developer"
+    },
     "about": {
       "hobby": "In my free time I devote myself to traveling. Hitchhiking, I traveled half of Europe and I'm not going to stop there. I try to be up-to-date with technical innovations.",
       "sports": "Privately I am an instructor of Windsurfing and Snowboarding. He is addicted to sports and adrenaline on a daily basis. Active trips and travels are something that gives me strength to act.",
@@ -37,8 +41,9 @@
     "contact": {
       "send": "Send",
       "subject": "I'm interested in hiring you... ",
-      "email": "head.hunter@dream.company.com",
-      "name": "Dream Company"
+      "email": "name@dream.company.com",
+      "name": "Dream Company",
+      "message": "Message"
     },
     "edu": {
       "boot": "Boot Camp",
@@ -48,6 +53,10 @@
       "university": "Warsaw University of Technology",
       "belhior": "ELECTRICAL ENGENEER",
       "master": "COMPUTER SCIENCE"
+    },
+    "work": {
+      "experience": "Years of work",
+      "practice": "Years of IT experience"
     },
     "validation": {
       "edit": {

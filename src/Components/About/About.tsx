@@ -5,6 +5,7 @@ import SectionTitle from '../Section/SectionTitle';
 import Section from '../Section/Section';
 import { cardColor, section2Color } from '../../themes/colors';
 import { useTranslation } from 'react-i18next';
+import ImageCollage from './ImageCollage';
 
 const AboutSection = styled(Section)`
   background-color: ${section2Color};
@@ -19,6 +20,9 @@ const Card = styled.div`
   padding: 2rem;
   margin: 2rem;
   background-image: ${cardColor};
+  span {
+    font-size: 1.2rem;
+  }
 `;
 
 interface Props {
@@ -29,33 +33,40 @@ const About: FunctionComponent<Props> = ({ sectionRef }) => {
   return (
     <AboutSection ref={sectionRef}>
       <SectionTitle title={t('section.title.about')} />
-      <Container>
+      <Container fluid>
         <Row>
-          <Col col>
-            <Card>
-              <h3>{t('general.programing')}</h3>
-              {t('about.programing')}
-            </Card>
+          <Col lg={4} sm={12}>
+            <ImageCollage />
           </Col>
-          <Col col>
-            <Card>
-              <h3>{t('general.sports')}</h3>
-              {t('about.sports')}
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col col>
-            <Card>
-              <h3>{t('general.about')}</h3>
-              {t('about.me')}
-            </Card>
-          </Col>
-          <Col col>
-            <Card>
-              <h3>{t('general.hobby')}</h3>
-              {t('about.hobby')}
-            </Card>
+          <Col lg={8} sm={12}>
+            <Row>
+              <Col col>
+                <Card>
+                  <h3>{t('general.programing')}</h3>
+                  <span>{t('about.programing')}</span>
+                </Card>
+              </Col>
+              <Col col>
+                <Card>
+                  <h3>{t('general.sports')}</h3>
+                  <span>{t('about.sports')}</span>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <Col col>
+                <Card>
+                  <h3>{t('general.about')}</h3>
+                  <span>{t('about.me')}</span>
+                </Card>
+              </Col>
+              <Col col>
+                <Card>
+                  <h3>{t('general.hobby')}</h3>
+                  <span>{t('about.hobby')}</span>
+                </Card>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

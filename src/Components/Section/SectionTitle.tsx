@@ -8,6 +8,7 @@ interface OwnProps {
 
 type Props = OwnProps;
 const Title = styled.div`
+  z-index: 1;
   width: 100%;
   flex-direction: column;
   line-height: 1.8;

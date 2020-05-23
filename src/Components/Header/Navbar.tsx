@@ -4,6 +4,7 @@ import styled, { css, keyframes } from 'styled-components';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import { backgroundColor, highlightColor, linkColor, textColor } from '../../themes/colors';
+import { debounce } from 'lodash';
 interface Section {
   name: string;
   scrollTo(): void;
@@ -110,17 +111,25 @@ const rotate = keyframes`
     transform: rotateY(0rem);
 }
 `;
-const NavLogo = styled.div`
+const NavLogo = styled.div<{ sticky?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  h1 {
+    color: ${textColor};
+  }
   img {
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
     margin-right: 0.5rem;
-    animation: ${rotate} 0.7s ease-in-out 0.5s;
+    ${(props) =>
+      props.sticky
+        ? css`
+            animation: ${rotate} 0.7s ease-in;
+          `
+        : ''}
   }
 `;
 
@@ -141,7 +150,7 @@ const NavLink = styled.li`
   margin: 0 1vw;
   transition: all 200ms ease-in;
   position: relative;
-
+  font-size: large;
   :after {
     position: absolute;
     bottom: 0;
@@ -170,12 +179,15 @@ const NavLink = styled.li`
 `;
 const Navbar: FunctionComponent<Props> = ({ sticky, sections, onChangeTheme }) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [lock, setLock] = useState(false);
   useEffect(() => setNavbarOpen(false), [sticky]);
+  const toggle = () => setLock((prevState) => !prevState);
+
   return (
-    <Nav sticky={sticky}>
+    <Nav sticky={(sticky || lock) && window.scrollY > 100} onMouseEnter={toggle} onMouseLeave={toggle}>
       <Toggle onClick={() => setNavbarOpen(!navbarOpen)}>{navbarOpen ? <Hamburger open /> : <Hamburger />}</Toggle>
-      <NavLogo onClick={() => window.scrollTo({ top: 0, left: 0 })}>
-        {sticky ? <img src={Logo} alt="logo" className="navbar--logo" /> : null}
+      <NavLogo sticky={sticky} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
+        <img src={Logo} alt="logo" className="navbar--logo" />
         <h1> Acodexm</h1>
       </NavLogo>
       <Navbox open={navbarOpen}>
