@@ -1,7 +1,7 @@
 {
   "name": "acodexm-page-ts",
   "version": "1.0.0",
-  "description": "My page",
+  "description": "My page version 2",
   "private": true,
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "deploy": "yarn run build && NODE_DEBUG=gh-pages gh-pages -d build",
     "test:coverage": "yarn test --watchAll false --coverage",
     "lint": "tsc --noEmit && eslint '*/**/*.{ts,tsx}'",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
