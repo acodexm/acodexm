@@ -10,13 +10,20 @@
     <link rel="manifest" href="manifest.json" />
     <title>Acodexm Page</title>
     <style>
+      html {
+        height: 100%;
+      }
       body {
+        height: 100%;
         background-color: #1f1f1f;
       }
       .loader {
-        position: absolute;
-        top: calc(50% - 8em);
-        left: calc(50% - 8em);
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
       .bars div {
         position: absolute;
@@ -67,7 +74,7 @@
       }
 
       .loader--hide {
-        visibility: hidden;
+        display: none;
       }
 
       @keyframes keyframes1 {
