@@ -10,9 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 import theme from 'styled-theming';
 
-const EduSection = styled(Section)`
-  background-color: ${section2Color};
-`;
+const EduSection = styled(Section)``;
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
@@ -63,7 +61,7 @@ const Education: FunctionComponent<Props> = ({ sectionRef }) => {
   const { t } = useTranslation();
 
   return (
-    <EduSection ref={sectionRef}>
+    <EduSection ref={sectionRef} mode={'secondary'}>
       <SectionTitle title={t('section.title.education')} />
       <Container>
         <Background>

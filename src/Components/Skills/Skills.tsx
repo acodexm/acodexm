@@ -63,10 +63,7 @@ const icons = [
     name: 'Android'
   }
 ];
-const SkillsSection = styled(Section)`
-  background-color: ${section1Color};
-  min-height: 50vh;
-`;
+const SkillsSection = styled(Section)``;
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
@@ -74,7 +71,7 @@ const Skills: FunctionComponent<Props> = ({ sectionRef }) => {
   const { t } = useTranslation();
 
   return (
-    <SkillsSection ref={sectionRef}>
+    <SkillsSection ref={sectionRef} mode={'primary'}>
       <SectionTitle title={t('section.title.skills')} />
       <Waves items={icons} />
     </SkillsSection>

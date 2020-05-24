@@ -158,16 +158,9 @@ interface Theme {
 }
 type Props = FieldRenderProps<any> & Theme;
 
-export const FinalReCaptcha: FunctionComponent<Props> = ({ className, input, meta, mode }) => {
-  const ref = useRef(null);
-  useEffect(() => {
-    // @ts-ignore
-    ref.current.reset();
-  }, [mode]);
-  return (
-    <div className={className}>
-      <ReCAPTCHA ref={ref} theme={mode} sitekey={process.env.REACT_APP_RECAPTCHA_KEY || ''} onChange={input.onChange} />
-      <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
-    </div>
-  );
-};
+export const FinalReCaptcha: FunctionComponent<Props> = ({ className, input, meta, mode }) => (
+  <div className={className}>
+    <ReCAPTCHA theme={mode} sitekey={process.env.REACT_APP_RECAPTCHA_KEY || ''} onChange={input.onChange} />
+    <ErrorMsg visible={isInvalid(meta)}>{errorMsg(meta)}</ErrorMsg>
+  </div>
+);

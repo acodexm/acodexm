@@ -8,10 +8,7 @@ import { Col, Container, Row } from 'styled-bootstrap-grid';
 import brain from '../../assets/images/brain.png';
 import nask from '../../assets/images/nask.png';
 
-const WorkSection = styled(Section)`
-  background-color: ${section1Color};
-  min-height: 50vh;
-`;
+const WorkSection = styled(Section)``;
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
@@ -19,6 +16,7 @@ const Experience = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
+  align-items: center;
   img {
     display: flex;
     max-width: 40vh;
@@ -29,11 +27,10 @@ const Experience = styled.div`
     height: 100%;
   }
   div {
-    position: absolute;
-    top: 8rem;
+    position: relative;
+    left: -7rem;
     width: 20vh;
     margin: auto;
-    left: 0;
     text-align: start;
     span {
       font-size: 1.5rem;
@@ -45,6 +42,7 @@ const Practice = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
+  align-items: center;
   img {
     max-width: 40vh;
     display: flex;
@@ -55,11 +53,10 @@ const Practice = styled.div`
     height: 100%;
   }
   div {
-    position: absolute;
-    top: 6rem;
-    width: 20vh;
+    position: relative;
+    top: -6rem;
+    width: 17vh;
     margin: auto;
-    left: 2rem;
     text-align: start;
     span {
       font-size: 1.5rem;
@@ -70,7 +67,7 @@ const Practice = styled.div`
 const Work: FunctionComponent<Props> = ({ sectionRef }) => {
   const { t } = useTranslation();
   return (
-    <WorkSection ref={sectionRef}>
+    <WorkSection ref={sectionRef} mode={'primary'}>
       <SectionTitle title={t('section.title.work')} />
       <Container>
         <Row alignItems={'center'}>

@@ -41,24 +41,35 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
               <Row>
                 <Col lg={4} sm={12}>
                   <Field name="from_name" validate={isRequired()} maxLength={50}>
-                    {(field) => <FormInput {...field} label="Name" placeholder={t('contact.name')} />}
+                    {(field) => (
+                      <FormInput {...field} label={t('contact.label.name')} placeholder={t('contact.name')} />
+                    )}
                   </Field>
                 </Col>
                 <Col lg={4} sm={12}>
                   <Field name="from_email" validate={composeValidators(mustBeEmail, isRequired())} maxLength={100}>
-                    {(field) => <FormInput {...field} type="email" label="Email" placeholder={t('contact.email')} />}
+                    {(field) => (
+                      <FormInput
+                        {...field}
+                        type="email"
+                        label={t('contact.label.email')}
+                        placeholder={t('contact.email')}
+                      />
+                    )}
                   </Field>
                 </Col>
                 <Col lg={4} sm={12}>
                   <Field name="subject" validate={isRequired()} maxLength={100}>
-                    {(field) => <FormInput {...field} label="Subject" placeholder={t('contact.subject')} />}
+                    {(field) => (
+                      <FormInput {...field} label={t('contact.label.subject')} placeholder={t('contact.subject')} />
+                    )}
                   </Field>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <Field name="message_html" maxLength={1000} validate={isRequired()}>
-                    {(field) => <FormTextarea {...field} type="textarea" label={t('contact.message')} />}
+                    {(field) => <FormTextarea {...field} type="textarea" label={t('contact.label.message')} />}
                   </Field>
                 </Col>
               </Row>

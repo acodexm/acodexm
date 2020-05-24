@@ -6,15 +6,10 @@ import github_bg from '../../assets/images/github.png';
 import Section from '../Section/Section';
 import axios from 'axios';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
-import { cardColor, section2Color, textColor } from '../../themes/colors';
+import { cardColor, textColor } from '../../themes/colors';
 import { useTranslation } from 'react-i18next';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const ProjectsSection = styled(Section)`
-  background-color: ${section2Color};
-  min-height: 50vh;
-`;
+const ProjectsSection = styled(Section)``;
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
@@ -79,7 +74,7 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
   const { t } = useTranslation();
 
   return (
-    <ProjectsSection ref={sectionRef}>
+    <ProjectsSection ref={sectionRef} mode={'secondary'}>
       <SectionTitle title={t('section.title.projects')} />
       {loading && 'loading...'}
       {error && 'Request error'}

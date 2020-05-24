@@ -8,6 +8,7 @@ interface OwnProps {}
 type Props = OwnProps;
 const ProfilePicture = styled.div`
   display: flex;
+  margin: auto;
   img {
     width: 100%;
     height: 100%;
@@ -21,12 +22,16 @@ const ProfilePicture = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
     background: radial-gradient(transparent 20%, ${section1Color} 60%);
   }
   :after {
     content: '';
     height: 100%;
     width: 100%;
+    left: 0;
+    top: 0;
     position: absolute;
     background-image: url(${profile_lines});
     background-repeat: no-repeat;

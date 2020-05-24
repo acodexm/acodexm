@@ -5,6 +5,7 @@ import wind from '../../assets/images/windsurfing.png';
 import mountain from '../../assets/images/mountain.png';
 import asia from '../../assets/images/asia.png';
 import laptop from '../../assets/images/laptop.png';
+import { invertColor } from '../../themes/colors';
 
 interface OwnProps {}
 
@@ -29,6 +30,7 @@ const Collage = styled.div`
   }
   .b {
     grid-column: 2;
+    filter: ${invertColor};
     grid-row: 1;
     ${backgroundImage(asia)}
   }

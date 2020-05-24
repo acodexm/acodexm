@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import Section from '../Section/Section';
-import { section1Color, textColor } from '../../themes/colors';
+import { cardColor, highlightColor, section1Color, textColor } from '../../themes/colors';
 import { FinalInput, FinalReCaptcha, FinaTextarea } from '../FinalForm/FinalComponents';
 import { contactBackground } from '../../themes/images';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 const ContactSection = styled.section`
   background-color: ${section1Color};
@@ -28,6 +28,7 @@ const ContactSection = styled.section`
     background-size: cover;
     background-image: ${contactBackground};
     opacity: 30%;
+    filter: blur(6px);
   }
 `;
 const FormInput = styled(FinalInput)`
@@ -45,12 +46,17 @@ const FormReCaptcha = styled(FinalReCaptcha)`
   margin: 0.7rem auto;
 `;
 const SubmitButton = styled.button`
+  color: ${textColor};
   height: 50px;
   padding: 1rem;
   margin: 1rem;
-  background-color: coral;
-  border: 1px solid black;
+  background-image: ${cardColor};
+  border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
+  :hover {
+    box-shadow: 0 0.3rem 0.3rem ${highlightColor};
+  }
   ${(props) =>
     props.disabled
       ? css`

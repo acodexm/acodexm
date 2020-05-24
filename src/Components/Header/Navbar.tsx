@@ -49,7 +49,7 @@ const Toggle = styled.div`
   display: none;
   height: 100%;
   cursor: pointer;
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     display: flex;
   }
 `;
@@ -57,7 +57,7 @@ const Navbox = styled.div<{ open?: boolean }>`
   display: flex;
   height: auto;
   align-items: center;
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     ul {
       flex-direction: column;
       justify-content: flex-start;
@@ -150,7 +150,8 @@ const NavLink = styled.li`
   margin: 0 1vw;
   transition: all 200ms ease-in;
   position: relative;
-  font-size: large;
+  font-size: 1.2rem;
+  font-weight: bold;
   :after {
     position: absolute;
     bottom: 0;

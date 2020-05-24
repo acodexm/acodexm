@@ -21,14 +21,14 @@
       }
     },
     "welcome": {
-      "hello": "Hello I am",
+      "hello": "Hello, I am",
       "dev": "Creative Web developer"
     },
     "about": {
-      "hobby": "In my free time I devote myself to traveling. Hitchhiking, I traveled half of Europe and I'm not going to stop there. I try to be up-to-date with technical innovations.",
-      "sports": "Privately I am an instructor of Windsurfing and Snowboarding. He is addicted to sports and adrenaline on a daily basis. Active trips and travels are something that gives me strength to act.",
-      "programing": "Programming I deal with from the High School. I have completed many projects in various languages so far. Currently, I devote the most time to develop Front End skills",
-      "me": "I am open and creative. I learn quickly and can find myself in every situation. I perfectly manage entrusted tasks and my working time."
+      "hobby": "Active trips and travels are something that gives me strength to act. I aleady traveld half of Europe by Hitchhiking, and since more than half year im traveling around Asia with my girlfriend and friend. We have already visit India, Birma, Thailand and Cambodia.",
+      "sports": "Privately I am an instructor of Windsurfing and Snowboarding. I am addicted to sports and adrenaline on a daily basis. I love activity and power in life!",
+      "programing": "I deal with programing from the Lyceum.I have completed many projects in various languages.Currently, I devote the most time to develop Front End skills. I love to be up-to-date with technical innovations.",
+      "me": "I am open and creative person. I learn quickly and can find myself in every situation. I perfectly manage entrusted tasks and my working time."
     },
     "general": {
       "hobby": "Hobby",
@@ -43,7 +43,12 @@
       "subject": "I'm interested in hiring you... ",
       "email": "name@dream.company.com",
       "name": "Dream Company",
-      "message": "Message"
+      "label": {
+        "message": "Message",
+        "name": "Name",
+        "email": "Email",
+        "subject": "Subject"
+      }
     },
     "edu": {
       "boot": "Boot Camp",

@@ -1,23 +1,27 @@
 import React from 'react';
-import styled from 'styled-components';
-import { invertColor, section2Color, textColor } from '../../themes/colors';
-import theme from 'styled-theming';
+import styled, { css } from 'styled-components';
+import { invertColor, section2Color, section1Color, textColor, backgroundColor } from '../../themes/colors';
+import { sectionBackground, sectionSecondaryBackground } from '../../themes/images';
 
-import net from '../../assets/images/net.png';
-import network from '../../assets/svg/network.svg';
-import { sectionBackground } from '../../themes/images';
-const Section = styled.section`
+const Section = styled.section<{ mode: 'primary' | 'secondary' }>`
   & {
     background-attachment: fixed;
     background-size: cover;
     line-height: 1.8;
     display: flex;
     flex-direction: column;
+    background-color: ${(props) => (props.mode === 'primary' ? section1Color : section2Color)};
     align-items: center;
     color: ${textColor};
     text-align: center;
     position: relative;
     min-height: 50vh;
+    ${(props) =>
+      props.mode === 'secondary'
+        ? css`
+            box-shadow: 50px 0 100px 0 ${backgroundColor};
+          `
+        : ''};
   }
   &:before {
     content: '';
@@ -29,7 +33,7 @@ const Section = styled.section`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: ${sectionBackground};
+    background-image: ${(props) => (props.mode === 'primary' ? sectionBackground : sectionSecondaryBackground)};
     opacity: 30%;
     filter: ${invertColor};
   }

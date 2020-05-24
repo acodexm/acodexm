@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import { Container, Col, Row } from 'styled-bootstrap-grid';
 import SectionTitle from '../Section/SectionTitle';
 import Section from '../Section/Section';
-import { cardColor, section2Color } from '../../themes/colors';
+import { cardColor } from '../../themes/colors';
 import { useTranslation } from 'react-i18next';
 import ImageCollage from './ImageCollage';
 
-const AboutSection = styled(Section)`
-  background-color: ${section2Color};
-  min-height: 50vh;
-`;
+const AboutSection = styled(Section)``;
 const Card = styled.div`
   border-radius: 1rem;
   border-color: coral;
@@ -31,7 +28,7 @@ interface Props {
 const About: FunctionComponent<Props> = ({ sectionRef }) => {
   const { t } = useTranslation();
   return (
-    <AboutSection ref={sectionRef}>
+    <AboutSection ref={sectionRef} mode={'secondary'}>
       <SectionTitle title={t('section.title.about')} />
       <Container fluid>
         <Row>
@@ -42,8 +39,8 @@ const About: FunctionComponent<Props> = ({ sectionRef }) => {
             <Row>
               <Col col>
                 <Card>
-                  <h3>{t('general.programing')}</h3>
-                  <span>{t('about.programing')}</span>
+                  <h3>{t('general.about')}</h3>
+                  <span>{t('about.me')}</span>
                 </Card>
               </Col>
               <Col col>
@@ -56,8 +53,8 @@ const About: FunctionComponent<Props> = ({ sectionRef }) => {
             <Row>
               <Col col>
                 <Card>
-                  <h3>{t('general.about')}</h3>
-                  <span>{t('about.me')}</span>
+                  <h3>{t('general.programing')}</h3>
+                  <span>{t('about.programing')}</span>
                 </Card>
               </Col>
               <Col col>

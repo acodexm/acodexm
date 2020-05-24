@@ -21,14 +21,14 @@
       }
     },
     "welcome": {
-      "hello": "Cześć jestem",
+      "hello": "Cześć, jestem",
       "dev": "Kreatywny Web developer"
     },
     "about": {
-      "hobby": "W wolnym czasie poświęcam się podróżowaniu. Autostopem, podróżowałem przez połowę Europy i nie zamierzam się tam zatrzymać. Staram się być na bieżąco z innowacjami technicznymi.",
-      "sports": "Prywatnie jestem instruktorem windsurfingu i snowboardu. Codziennie jest uzależniony od sportu i adrenaliny. Aktywne wycieczki i podróże dają mi siłę do działania.\n",
-      "programing": "Programowaniem zajmuję się od szkoły średniej. Do tej pory zrealizowałem wiele projektów w różnych językach. Obecnie najwięcej czasu poświęcam na rozwijanie umiejętności Front Endu",
-      "me": "Jestem otwarty i kreatywny. Uczę się szybko i potrafię znaleźć się w każdej sytuacji. Doskonale zarządzam powierzonymi zadaniami i czasem pracy."
+      "hobby": "Aktywne spędzanie wolnego czasu i podróżowanie dają mi siłę do działania. Przejechałem autostopem prawie połowę Europy, a od ponad pół roku podróżuję po Azji. Wraz z moją dziewczyną i przyjacielem odwiedziłem już Indie, Birmę, Tajlandię i Kambodżę.",
+      "sports": "Prywatnie jestem instruktorem windsurfingu i snowboardu. Na codzień jestem uzależniony od sportu i adrenaliny. Uwielbiam aktywność w życiu!",
+      "programing": "Programowaniem zajmuję się od szkoły średniej. Do tej pory zrealizowałem wiele projektów w różnych językach. Obecnie najwięcej czasu poświęcam na rozwijanie umiejętności Front Endu. Uwielbiam być na bieżąco z innowacjami technicznymi.",
+      "me": "Jestem otwarty i kreatywny. Szybko się uczę i odnajduję się w każdej sytuacji. Doskonale zarządzam powierzonymi zadaniami oraz czasem pracy."
     },
     "general": {
       "hobby": "Hobby",
@@ -42,7 +42,12 @@
       "subject": "Mam ofertę pracy... ",
       "email": "name@dream.company.com",
       "name": "Firma marzeń",
-      "message": "Wiadomość"
+      "label": {
+        "message": "Wiadomość",
+        "name": "Nazwa",
+        "email": "Email",
+        "subject": "Temat"
+      }
     },
     "edu": {
       "boot": "Boot Camp",
@@ -55,7 +60,7 @@
     },
     "work": {
       "experience": "Lata pracy",
-      "practice": "Lat doświadczenia programisty"
+      "practice": "Lat nauki programowania"
     },
     "validation": {
       "edit": {
