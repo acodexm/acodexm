@@ -6,15 +6,21 @@ import mountain from '../../assets/images/mountain.png';
 import asia from '../../assets/images/asia.png';
 import laptop from '../../assets/images/laptop.png';
 import { invertColor } from '../../themes/colors';
+import LoadingHandler from '../Loading/LoadingHandler';
 
 interface OwnProps {}
 
 type Props = OwnProps;
-const backgroundImage = (src: any) => css`
-  background-image: url(${src});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+const backgroundImage = css`
+  img {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 200px;
+    min-width: 150px;
+    min-height: 150px;
+    object-fit: cover;
+  }
 `;
 const Collage = styled.div`
   margin: 2rem;
@@ -26,38 +32,58 @@ const Collage = styled.div`
   .a {
     grid-column: 1;
     grid-row: 1;
-    ${backgroundImage(wind)}
+    ${backgroundImage}
   }
   .b {
     grid-column: 2;
     filter: ${invertColor};
     grid-row: 1;
-    ${backgroundImage(asia)}
+    ${backgroundImage}
   }
   .c {
     grid-column: 1;
     grid-row: 2;
-    ${backgroundImage(laptop)}
+    ${backgroundImage}
   }
   .d {
     grid-column: 2;
     grid-row: 2;
-    ${backgroundImage(snowboard)}
+    ${backgroundImage}
   }
   .e {
     grid-column: 1/3;
     grid-row: 3;
-    ${backgroundImage(mountain)}
+    ${backgroundImage}
   }
 `;
 const ImageCollage: FunctionComponent<Props> = (props) => {
   return (
     <Collage>
-      <div className={'a'} />
-      <div className={'b'} />
-      <div className={'c'} />
-      <div className={'d'} />
-      <div className={'e'} />
+      <div className={'a'}>
+        <LoadingHandler>
+          <img src={wind} alt="" />
+        </LoadingHandler>
+      </div>
+      <div className={'b'}>
+        <LoadingHandler>
+          <img src={asia} alt="" />
+        </LoadingHandler>
+      </div>
+      <div className={'c'}>
+        <LoadingHandler>
+          <img src={laptop} alt="" />
+        </LoadingHandler>
+      </div>
+      <div className={'d'}>
+        <LoadingHandler>
+          <img src={snowboard} alt="" />
+        </LoadingHandler>
+      </div>
+      <div className={'e'}>
+        <LoadingHandler>
+          <img src={mountain} alt="" />
+        </LoadingHandler>
+      </div>
     </Collage>
   );
 };

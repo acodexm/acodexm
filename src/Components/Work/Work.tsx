@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import SectionTitle from '../Section/SectionTitle';
 import Section from '../Section/Section';
-import { section1Color, textColor } from '../../themes/colors';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 import brain from '../../assets/images/brain.png';
 import nask from '../../assets/images/nask.png';
+import LoadingHandler from '../Loading/LoadingHandler';
 
 const WorkSection = styled(Section)``;
 interface Props {
@@ -72,22 +72,26 @@ const Work: FunctionComponent<Props> = ({ sectionRef }) => {
       <Container>
         <Row alignItems={'center'}>
           <Col lg={6} sm={12}>
-            <Practice>
-              <img src={brain} alt="brain" />
-              <div>
-                <span>8</span>
-                <br />
-                <span>{t('work.practice')}</span>
-              </div>
-            </Practice>
+            <LoadingHandler>
+              <Practice>
+                <img src={brain} alt="brain" />
+                <div>
+                  <span>8</span>
+                  <br />
+                  <span>{t('work.practice')}</span>
+                </div>
+              </Practice>
+            </LoadingHandler>
           </Col>
           <Col lg={6} sm={12}>
-            <Experience>
-              <img src={nask} alt="nask" />
-              <div>
-                <span>2 {t('work.experience')}</span>
-              </div>
-            </Experience>
+            <LoadingHandler>
+              <Experience>
+                <img src={nask} alt="nask" />
+                <div>
+                  <span>2 {t('work.experience')}</span>
+                </div>
+              </Experience>
+            </LoadingHandler>
           </Col>
         </Row>
       </Container>

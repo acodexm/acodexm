@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders initial count', () => {
   render(<App />);
-  const zero = screen.getByText('0');
-  expect(zero).toBeInTheDocument();
+  const myName = screen.getByText('Adam Kamiński');
+  expect(myName).toBeInTheDocument();
 });

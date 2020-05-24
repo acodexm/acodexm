@@ -4,34 +4,36 @@ import { isFunction } from 'lodash';
 
 type SetStateAction<S> = S | ((prevState: S) => S);
 type Dispatch<A> = (value: A) => void;
-interface State {
-  <S>(initState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];
-}
-interface Storage {
-  <S>(initState: S | (() => S), key: string): [S, Dispatch<SetStateAction<S>>];
-}
-export const useSetState: State = (initState) => {
-  const [state, setState] = useState(initState);
-  const updateState: Dispatch<SetStateAction<any>> = (arg) => setState((prev) => ({ ...prev, ...arg }));
-  return [state, updateState];
+type Partial<T> = {
+  [P in keyof T]?: T[P];
 };
+export function useSetState<S>(initState: S | (() => S)): [S, Dispatch<SetStateAction<Partial<S>>>] {
+  const [state, setState] = useState(initState);
+  const updateState: Dispatch<SetStateAction<Partial<S>>> = (arg) => {
+    setState((prev) => ({ ...prev, ...arg }));
+  };
+  return [state, updateState];
+}
 
-export const useSetStateWithStorage: Storage = (initState, key) => {
-  const data = LocalStorage.getItem(key) || initState;
+export function useSetStateWithStorage<S>(
+  initState: S | (() => S),
+  key: string
+): [S, Dispatch<SetStateAction<Partial<S>>>] {
+  const data = (LocalStorage.getItem(key) as S) || initState;
   const [state, setState] = useState(data);
-  const updateState: Dispatch<SetStateAction<any>> = (arg) => {
+  const updateState: Dispatch<SetStateAction<Partial<S>>> = (arg) => {
     if (isFunction(arg)) {
-      setState((prev: any) => {
-        const data = arg(prev);
+      setState((prev) => {
+        const data = arg(prev) as S;
         LocalStorage.setItem(key, data);
         return data;
       });
     } else
-      setState((prev: any) => {
+      setState((prev) => {
         const data = { ...prev, ...arg };
         LocalStorage.setItem(key, data);
         return data;
       });
   };
   return [state, updateState];
-};
+}

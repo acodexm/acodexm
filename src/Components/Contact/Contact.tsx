@@ -21,6 +21,7 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
     await emailjs.send('gmail', 'acodexm', values).then(
       (result) => {
         console.log(result.text);
+        //todo handle massages
       },
       (error) => {
         console.log(error.text);

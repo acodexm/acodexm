@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import acodexm from '../../assets/images/acodexm.png';
 import profile_lines from '../../assets/images/profile_lines.png';
 import styled from 'styled-components';
 import { backgroundColor, section1Color } from '../../themes/colors';
+import { useSetState } from '../../hooks/useSetState';
+import LoadingHandler from '../Loading/LoadingHandler';
 interface OwnProps {}
 
 type Props = OwnProps;
@@ -40,9 +42,11 @@ const ProfilePicture = styled.div`
 `;
 const ProfilePic: FunctionComponent<Props> = (props) => {
   return (
-    <ProfilePicture>
-      <img src={acodexm} alt="acodexm" />
-    </ProfilePicture>
+    <LoadingHandler>
+      <ProfilePicture>
+        <img src={acodexm} alt="acodexm" />
+      </ProfilePicture>
+    </LoadingHandler>
   );
 };
 

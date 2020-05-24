@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, Suspense, useEffect, useRef, useState } from 'react';
 import 'react-toggle/style.css';
 import ErrorBoundary from './Components/Error/ErrorBoundary';
 import { BaseCSS } from 'styled-bootstrap-grid';
@@ -17,12 +17,18 @@ import { useTranslation } from 'react-i18next';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSetStateWithStorage } from './hooks/useSetState';
+import './i18n';
+import 'normalize.css';
 
-const App = () => {
+interface Loading {
+  hideLoader(): void;
+}
+
+const App: FunctionComponent<Loading> = ({ hideLoader }) => {
   const [state, setState] = useSetStateWithStorage({ mode: 'dark' }, 'APPLICATION_THEME');
   const { t } = useTranslation();
   const { sticky, element } = useSticky();
-
+  useEffect(hideLoader, []);
   const scrollToRef = (ref: React.RefObject<HTMLElement>) => () => {
     // @ts-ignore
     window.scrollTo(0, ref.current.offsetTop - 116);
