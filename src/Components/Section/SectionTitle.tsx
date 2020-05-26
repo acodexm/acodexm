@@ -2,21 +2,13 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { textColor } from '../../themes/colors';
 
-interface OwnProps {
-  title: string;
-}
-
-type Props = OwnProps;
 const Title = styled.div`
-  z-index: 1;
+  z-index: 5;
   width: 100%;
-  flex-direction: column;
-  line-height: 1.8;
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 1rem;
+  margin: 1rem 0;
   .line_dots {
     width: 4px;
     height: 54.569px;
@@ -27,6 +19,10 @@ const Title = styled.div`
     font-size: xx-large;
   }
 `;
+interface OwnProps {
+  title: string;
+}
+type Props = OwnProps;
 const SectionTitle: FunctionComponent<Props> = ({ title }) => {
   return (
     <Title>

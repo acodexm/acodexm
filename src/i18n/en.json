@@ -36,7 +36,11 @@
       "programing": "Programming",
       "about": "About me",
       "me": "Acodexm",
-      "github": "Github"
+      "github": "Github",
+      "submit": {
+        "success": "Email send!",
+        "error": "Something went wrong, please try again later"
+      }
     },
     "contact": {
       "send": "Send",

@@ -69,7 +69,6 @@ interface Props {
 }
 const Skills: FunctionComponent<Props> = ({ sectionRef }) => {
   const { t } = useTranslation();
-
   return (
     <SkillsSection ref={sectionRef} mode={'primary'}>
       <SectionTitle title={t('section.title.skills')} />

@@ -12,10 +12,11 @@ const Card = styled.div`
   border-radius: 1rem;
   border-color: coral;
   border-width: thick;
+  height: 90%;
+  width: 90%;
   min-width: 25vh;
-  min-height: 20vh;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 1rem;
+  margin: 1rem;
   background-image: ${cardColor};
   span {
     font-size: 1.2rem;

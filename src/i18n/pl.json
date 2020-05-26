@@ -35,7 +35,12 @@
       "sports": "Sporty",
       "programing": "Programmowanie",
       "about": "O mnie",
-      "me": "Acodexm"
+      "me": "Acodexm",
+      "github": "Github",
+      "submit": {
+        "success": "Email wysłany!",
+        "error": "Coś poszło nie tak, proszę spróbować ponownie później"
+      }
     },
     "contact": {
       "send": "Wyślij",

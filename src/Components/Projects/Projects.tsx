@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { cardColor, textColor } from '../../themes/colors';
 import { useTranslation } from 'react-i18next';
+import LoadingHandler from '../Loading/LoadingHandler';
 
 const ProjectsSection = styled(Section)``;
 interface Props {
@@ -22,8 +23,9 @@ const filterByDate = (date: any) => {
 };
 const Github = styled.div`
   color: white;
-  min-height: 20vh;
   min-width: 25vh;
+  width: 90%;
+  height: 90%;
   cursor: pointer;
   border-radius: 2rem;
   background-image: ${cardColor}, url(${github_bg});
@@ -31,12 +33,13 @@ const Github = styled.div`
   background-blend-mode: darken;
   background-position: center;
   background-size: contain;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 1rem;
+  margin: 1rem;
 `;
 const Card = styled.div`
   color: ${textColor};
-  min-height: 20vh;
+  width: 90%;
+  height: 90%;
   min-width: 25vh;
   cursor: pointer;
   border-radius: 2rem;
@@ -45,8 +48,8 @@ const Card = styled.div`
   background-position: center;
   background-blend-mode: exclusion;
   background-size: cover;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 1rem;
+  margin: 1rem;
 `;
 const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
   const [projects, setProjects] = useState<any[]>([]);
@@ -76,9 +79,7 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
   return (
     <ProjectsSection ref={sectionRef} mode={'secondary'}>
       <SectionTitle title={t('section.title.projects')} />
-      {loading && 'loading...'}
-      {error && 'Request error'}
-      {!loading && !error && (
+      <LoadingHandler loading={loading} error={error} preventDisplayContent style={{ margin: '2rem' }}>
         <Container>
           <Row style={{ justifyContent: 'center' }}>
             {list.map((item, i) => (
@@ -94,7 +95,7 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
             </Col>
           </Row>
         </Container>
-      )}
+      </LoadingHandler>
     </ProjectsSection>
   );
 };

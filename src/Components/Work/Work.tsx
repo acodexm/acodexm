@@ -6,29 +6,31 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 import brain from '../../assets/images/brain.png';
 import nask from '../../assets/images/nask.png';
-import LoadingHandler from '../Loading/LoadingHandler';
+import LoadingImgHandler from '../Loading/LoadingImgHandler';
 
 const WorkSection = styled(Section)``;
 interface Props {
   sectionRef: React.RefObject<HTMLElement>;
 }
-const Experience = styled.div`
+const Position = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
   img {
     display: flex;
-    max-width: 40vh;
-    max-height: 20vh;
-    min-height: 10vh;
-    min-width: 10vh;
+    max-width: 500px;
+    max-height: 300px;
+    min-height: 100px;
+    min-width: 100px;
     width: 100%;
     height: 100%;
   }
-  div {
+`;
+const ExperienceYears = styled.div`
+   {
     position: relative;
-    left: -7rem;
+    left: -8rem;
     width: 20vh;
     margin: auto;
     text-align: start;
@@ -38,23 +40,11 @@ const Experience = styled.div`
     }
   }
 `;
-const Practice = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  img {
-    max-width: 40vh;
-    display: flex;
-    max-height: 20vh;
-    min-height: 10vh;
-    min-width: 10vh;
-    width: 100%;
-    height: 100%;
-  }
-  div {
+const PracticeYears = styled.div`
+   {
     position: relative;
     top: -6rem;
+    left: -2rem;
     width: 17vh;
     margin: auto;
     text-align: start;
@@ -72,26 +62,26 @@ const Work: FunctionComponent<Props> = ({ sectionRef }) => {
       <Container>
         <Row alignItems={'center'}>
           <Col lg={6} sm={12}>
-            <LoadingHandler>
-              <Practice>
+            <LoadingImgHandler>
+              <Position>
                 <img src={brain} alt="brain" />
-                <div>
+                <PracticeYears>
                   <span>8</span>
                   <br />
                   <span>{t('work.practice')}</span>
-                </div>
-              </Practice>
-            </LoadingHandler>
+                </PracticeYears>
+              </Position>
+            </LoadingImgHandler>
           </Col>
           <Col lg={6} sm={12}>
-            <LoadingHandler>
-              <Experience>
+            <LoadingImgHandler>
+              <Position>
                 <img src={nask} alt="nask" />
-                <div>
+                <ExperienceYears>
                   <span>2 {t('work.experience')}</span>
-                </div>
-              </Experience>
-            </LoadingHandler>
+                </ExperienceYears>
+              </Position>
+            </LoadingImgHandler>
           </Col>
         </Row>
       </Container>

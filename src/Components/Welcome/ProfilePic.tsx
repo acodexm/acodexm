@@ -4,7 +4,7 @@ import profile_lines from '../../assets/images/profile_lines.png';
 import styled from 'styled-components';
 import { backgroundColor, section1Color } from '../../themes/colors';
 import { useSetState } from '../../hooks/useSetState';
-import LoadingHandler from '../Loading/LoadingHandler';
+import LoadingImgHandler from '../Loading/LoadingImgHandler';
 interface OwnProps {}
 
 type Props = OwnProps;
@@ -42,11 +42,11 @@ const ProfilePicture = styled.div`
 `;
 const ProfilePic: FunctionComponent<Props> = (props) => {
   return (
-    <LoadingHandler>
+    <LoadingImgHandler>
       <ProfilePicture>
         <img src={acodexm} alt="acodexm" />
       </ProfilePicture>
-    </LoadingHandler>
+    </LoadingImgHandler>
   );
 };
 

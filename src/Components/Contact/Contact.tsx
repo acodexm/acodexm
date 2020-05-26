@@ -8,6 +8,8 @@ import emailjs from 'emailjs-com';
 import { ContactSection, FormInput, FormReCaptcha, FormTextarea, SubmitButton } from './ContactStyles';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'styled-components';
+import { FORM_ERROR } from 'final-form';
+import { SubmitMessage } from '../FinalForm/FinalComponents';
 
 emailjs.init(process.env.REACT_APP_EMAILJS_USER_ID || '');
 
@@ -18,13 +20,10 @@ interface Props {
 }
 export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
   const onSubmit = async (values: any) => {
-    await emailjs.send('gmail', 'acodexm', values).then(
-      (result) => {
-        console.log(result.text);
-        //todo handle massages
-      },
+    return await emailjs.send('gmail', 'acodexm', values).then(
+      () => ({}),
       (error) => {
-        console.log(error.text);
+        return { [FORM_ERROR]: error.text };
       }
     );
   };
@@ -37,7 +36,7 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
         <Form
           onSubmit={onSubmit}
           decorators={[focusOnError]}
-          render={({ handleSubmit, submitting }) => (
+          render={({ handleSubmit, submitting, submitError, submitSucceeded }) => (
             <form onSubmit={handleSubmit} style={{ maxWidth: '1400px', margin: 'auto' }}>
               <Row>
                 <Col lg={4} sm={12}>
@@ -82,6 +81,7 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
                   <SubmitButton className="btn btn-success roboto" type="submit" disabled={submitting}>
                     {t('contact.send')}
                   </SubmitButton>
+                  <SubmitMessage submitError={submitError} submitSucceeded={submitSucceeded} />
                 </Col>
               </Row>
             </form>

@@ -20,7 +20,7 @@ const Hello = styled.label`
     background-image: ${cardColor};
     border-radius: 3px;
     position: relative;
-    left: 50%;
+    left: 60%;
     width: max-content;
     padding: 0 1rem;
     height: 3rem;

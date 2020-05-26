@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { useSetState } from '../../hooks/useSetState';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -46,7 +45,7 @@ const keyframes3 = keyframes`
     height: 80px;
   }
 `;
-const LoadingWrapper = styled.div<{ loading: boolean }>`
+const LoadingWrapper = styled.div<{ 'data-loading': boolean }>`
   display: flex;
   position: relative;
   width: 100%;
@@ -55,9 +54,7 @@ const LoadingWrapper = styled.div<{ loading: boolean }>`
   top: 0;
   justify-content: center;
   align-items: center;
-  .content {
-    visibility: ${(props) => (props.loading ? 'hidden' : 'visible')};
-  }
+
   .bars div {
     position: absolute;
     width: 30px;
@@ -87,7 +84,7 @@ const LoadingWrapper = styled.div<{ loading: boolean }>`
     background: none;
     display: inline-block;
     position: absolute;
-    visibility: ${(props) => (props.loading ? 'visible' : 'hidden')};
+    visibility: ${(props) => (props['data-loading'] ? 'visible' : 'hidden')};
   }
   .bars {
     width: 100%;
@@ -101,41 +98,43 @@ const LoadingWrapper = styled.div<{ loading: boolean }>`
     box-sizing: content-box;
   }
 `;
-const Error = styled.div<{ error: boolean }>`
+const Content = styled.div<{ 'data-visible'?: boolean }>`
+  visibility: ${(props) => (props['data-visible'] ? 'visible' : 'hidden')};
+`;
+const ErrorSpinner = styled.div<{ 'data-error': boolean }>`
   display: inline-block;
   position: absolute;
-  visibility: ${(props) => (props.error ? 'visible' : 'hidden')};
+  visibility: ${(props) => (props['data-error'] ? 'visible' : 'hidden')};
 `;
-interface OwnProps {}
+interface OwnProps {
+  loading: boolean;
+  error: boolean;
+  preventDisplayContent?: boolean;
+  style?: React.CSSProperties;
+}
 
 type Props = OwnProps;
-const LoadingHandler: FunctionComponent<Props> = ({ children }) => {
-  const [{ loading, error }, setState] = useSetState<{ loading: boolean; error: boolean }>({
-    loading: true,
-    error: false
-  });
-  const onLoad = () => setState({ loading: false });
-  const onError = () => setState({ error: true });
-  const injectHandler = () => {
-    if (!React.isValidElement(children)) return children;
-    return React.Children.map(children, (child) => {
-      return React.cloneElement(child as React.ReactElement, { onLoad, onError });
-    });
+const LoadingHandler: FunctionComponent<Props> = ({ children, loading, error, preventDisplayContent, style }) => {
+  const renderChildren = () => {
+    if (preventDisplayContent && !error && !loading) return children;
+    else if (!preventDisplayContent) return children;
+    else return null;
   };
-
   return (
-    <LoadingWrapper loading={loading}>
-      <div className="content">{injectHandler()}</div>
-      <div className="loading-bars">
+    <LoadingWrapper data-loading={loading} style={style}>
+      <Content data-testid="content" data-visible={!loading && !error}>
+        {renderChildren()}
+      </Content>
+      <div className="loading-bars" data-testid="loading">
         <div className="bars">
           <div />
           <div />
           <div />
         </div>
       </div>
-      <Error error={error}>
+      <ErrorSpinner data-error={error} data-testid="error">
         <FontAwesomeIcon icon={faExclamationCircle} spin size={'5x'} color={'red'} />
-      </Error>
+      </ErrorSpinner>
     </LoadingWrapper>
   );
 };

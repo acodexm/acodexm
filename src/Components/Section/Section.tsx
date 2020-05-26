@@ -19,7 +19,7 @@ const Section = styled.section<{ mode: 'primary' | 'secondary' }>`
     ${(props) =>
       props.mode === 'secondary'
         ? css`
-            box-shadow: 50px 0 100px 0 ${backgroundColor};
+            box-shadow: 0 0 50px 0 ${backgroundColor};
           `
         : ''};
   }

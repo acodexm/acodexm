@@ -18,7 +18,6 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSetStateWithStorage } from './hooks/useSetState';
 import './i18n';
-import 'normalize.css';
 
 interface Loading {
   hideLoader(): void;
@@ -33,6 +32,7 @@ const App: FunctionComponent<Loading> = ({ hideLoader }) => {
     // @ts-ignore
     window.scrollTo(0, ref.current.offsetTop - 116);
   };
+
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);

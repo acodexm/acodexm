@@ -6,7 +6,7 @@ import mountain from '../../assets/images/mountain.png';
 import asia from '../../assets/images/asia.png';
 import laptop from '../../assets/images/laptop.png';
 import { invertColor } from '../../themes/colors';
-import LoadingHandler from '../Loading/LoadingHandler';
+import LoadingImgHandler from '../Loading/LoadingImgHandler';
 
 interface OwnProps {}
 
@@ -56,36 +56,34 @@ const Collage = styled.div`
     ${backgroundImage}
   }
 `;
-const ImageCollage: FunctionComponent<Props> = (props) => {
-  return (
-    <Collage>
-      <div className={'a'}>
-        <LoadingHandler>
-          <img src={wind} alt="" />
-        </LoadingHandler>
-      </div>
-      <div className={'b'}>
-        <LoadingHandler>
-          <img src={asia} alt="" />
-        </LoadingHandler>
-      </div>
-      <div className={'c'}>
-        <LoadingHandler>
-          <img src={laptop} alt="" />
-        </LoadingHandler>
-      </div>
-      <div className={'d'}>
-        <LoadingHandler>
-          <img src={snowboard} alt="" />
-        </LoadingHandler>
-      </div>
-      <div className={'e'}>
-        <LoadingHandler>
-          <img src={mountain} alt="" />
-        </LoadingHandler>
-      </div>
-    </Collage>
-  );
-};
+const ImageCollage: FunctionComponent<Props> = () => (
+  <Collage>
+    <div className={'a'}>
+      <LoadingImgHandler>
+        <img src={wind} alt="" />
+      </LoadingImgHandler>
+    </div>
+    <div className={'b'}>
+      <LoadingImgHandler>
+        <img src={asia} alt="" />
+      </LoadingImgHandler>
+    </div>
+    <div className={'c'}>
+      <LoadingImgHandler>
+        <img src={laptop} alt="" />
+      </LoadingImgHandler>
+    </div>
+    <div className={'d'}>
+      <LoadingImgHandler>
+        <img src={snowboard} alt="" />
+      </LoadingImgHandler>
+    </div>
+    <div className={'e'}>
+      <LoadingImgHandler>
+        <img src={mountain} alt="" />
+      </LoadingImgHandler>
+    </div>
+  </Collage>
+);
 
 export default ImageCollage;

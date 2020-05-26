@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { backgroundColor, textColor } from '../../themes/colors';
 import Social from '../Social/Social';
 
-const t = (msg: string) => msg;
-
-const SFooter = styled.footer`
+const Footer = styled.footer`
   a {
     color: ${textColor};
   }
@@ -17,12 +15,8 @@ const SFooter = styled.footer`
   z-index: 20;
 `;
 
-const Footer = () => {
-  return (
-    <SFooter>
-      <Social />
-    </SFooter>
-  );
-};
-
-export default Footer;
+export default () => (
+  <Footer>
+    <Social />
+  </Footer>
+);
