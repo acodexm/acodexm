@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/acodexm-page-ts/static/css/main.5f3f3fa4.chunk.css",
-    "main.js": "/acodexm-page-ts/static/js/main.b952680e.chunk.js",
-    "main.js.map": "/acodexm-page-ts/static/js/main.b952680e.chunk.js.map",
+    "main.css": "/acodexm-page-ts/static/css/main.c05ffdcc.chunk.css",
+    "main.js": "/acodexm-page-ts/static/js/main.e9dc7197.chunk.js",
+    "main.js.map": "/acodexm-page-ts/static/js/main.e9dc7197.chunk.js.map",
     "runtime-main.js": "/acodexm-page-ts/static/js/runtime-main.e7ce54c1.js",
     "runtime-main.js.map": "/acodexm-page-ts/static/js/runtime-main.e7ce54c1.js.map",
-    "static/css/2.43a1393a.chunk.css": "/acodexm-page-ts/static/css/2.43a1393a.chunk.css",
-    "static/js/2.25e43d6c.chunk.js": "/acodexm-page-ts/static/js/2.25e43d6c.chunk.js",
-    "static/js/2.25e43d6c.chunk.js.map": "/acodexm-page-ts/static/js/2.25e43d6c.chunk.js.map",
+    "static/css/2.9de2e04a.chunk.css": "/acodexm-page-ts/static/css/2.9de2e04a.chunk.css",
+    "static/js/2.8cbb0a44.chunk.js": "/acodexm-page-ts/static/js/2.8cbb0a44.chunk.js",
+    "static/js/2.8cbb0a44.chunk.js.map": "/acodexm-page-ts/static/js/2.8cbb0a44.chunk.js.map",
     "index.html": "/acodexm-page-ts/index.html",
-    "precache-manifest.ddeebdb52289cb4806dc89cbe8911c5f.js": "/acodexm-page-ts/precache-manifest.ddeebdb52289cb4806dc89cbe8911c5f.js",
+    "precache-manifest.a90f3319b7f498721387cba6ca33d851.js": "/acodexm-page-ts/precache-manifest.a90f3319b7f498721387cba6ca33d851.js",
     "service-worker.js": "/acodexm-page-ts/service-worker.js",
-    "static/css/2.43a1393a.chunk.css.map": "/acodexm-page-ts/static/css/2.43a1393a.chunk.css.map",
-    "static/css/main.5f3f3fa4.chunk.css.map": "/acodexm-page-ts/static/css/main.5f3f3fa4.chunk.css.map",
-    "static/js/2.25e43d6c.chunk.js.LICENSE.txt": "/acodexm-page-ts/static/js/2.25e43d6c.chunk.js.LICENSE.txt",
+    "static/css/2.9de2e04a.chunk.css.map": "/acodexm-page-ts/static/css/2.9de2e04a.chunk.css.map",
+    "static/css/main.c05ffdcc.chunk.css.map": "/acodexm-page-ts/static/css/main.c05ffdcc.chunk.css.map",
+    "static/js/2.8cbb0a44.chunk.js.LICENSE.txt": "/acodexm-page-ts/static/js/2.8cbb0a44.chunk.js.LICENSE.txt",
     "static/media/IntelliJ.png": "/acodexm-page-ts/static/media/IntelliJ.8a440540.png",
     "static/media/acodexm.png": "/acodexm-page-ts/static/media/acodexm.4a0e95f0.png",
     "static/media/android.png": "/acodexm-page-ts/static/media/android.3270ec92.png",
@@ -45,9 +45,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.e7ce54c1.js",
-    "static/css/2.43a1393a.chunk.css",
-    "static/js/2.25e43d6c.chunk.js",
-    "static/css/main.5f3f3fa4.chunk.css",
-    "static/js/main.b952680e.chunk.js"
+    "static/css/2.9de2e04a.chunk.css",
+    "static/js/2.8cbb0a44.chunk.js",
+    "static/css/main.c05ffdcc.chunk.css",
+    "static/js/main.e9dc7197.chunk.js"
   ]
 }

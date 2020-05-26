@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a11b6fc7b0a0374e3afd2f6e1a82dc29",
+    "revision": "194e25cb1d66a4d7ed1f896af7c2ee9e",
     "url": "/acodexm-page-ts/index.html"
   },
   {
-    "revision": "984378748a20960df8d7",
-    "url": "/acodexm-page-ts/static/css/2.43a1393a.chunk.css"
+    "revision": "9ac6013a9dac0d6be195",
+    "url": "/acodexm-page-ts/static/css/2.9de2e04a.chunk.css"
   },
   {
-    "revision": "220e3e56ddf7b4431ed3",
-    "url": "/acodexm-page-ts/static/css/main.5f3f3fa4.chunk.css"
+    "revision": "f102c6b3dc9e17520612",
+    "url": "/acodexm-page-ts/static/css/main.c05ffdcc.chunk.css"
   },
   {
-    "revision": "984378748a20960df8d7",
-    "url": "/acodexm-page-ts/static/js/2.25e43d6c.chunk.js"
+    "revision": "9ac6013a9dac0d6be195",
+    "url": "/acodexm-page-ts/static/js/2.8cbb0a44.chunk.js"
   },
   {
     "revision": "117d65892edc8adcd29d4a0d57b5a80a",
-    "url": "/acodexm-page-ts/static/js/2.25e43d6c.chunk.js.LICENSE.txt"
+    "url": "/acodexm-page-ts/static/js/2.8cbb0a44.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "220e3e56ddf7b4431ed3",
-    "url": "/acodexm-page-ts/static/js/main.b952680e.chunk.js"
+    "revision": "f102c6b3dc9e17520612",
+    "url": "/acodexm-page-ts/static/js/main.e9dc7197.chunk.js"
   },
   {
     "revision": "b688a2a7d52d4e67086b",
