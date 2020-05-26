@@ -36,6 +36,9 @@ const ExperienceYears = styled.div`
     text-align: start;
     span {
       font-size: 1.5rem;
+      @media (max-width: 800px) {
+        font-size: 1rem;
+      }
       text-transform: capitalize;
     }
   }
@@ -50,6 +53,9 @@ const PracticeYears = styled.div`
     text-align: start;
     span {
       font-size: 1.5rem;
+      @media (max-width: 800px) {
+        font-size: 1rem;
+      }
       text-transform: capitalize;
     }
   }

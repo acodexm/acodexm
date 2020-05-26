@@ -13,6 +13,7 @@ interface OwnProps {}
 type Props = OwnProps;
 const backgroundImage = css`
   img {
+    border-radius: 1rem;
     width: 100%;
     height: 100%;
     max-width: 600px;
@@ -32,6 +33,7 @@ const Collage = styled.div`
   .a {
     grid-column: 1;
     grid-row: 1;
+    border-radius: 1rem;
     ${backgroundImage}
   }
   .b {
