@@ -42,7 +42,12 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
                 <Col lg={4} sm={12}>
                   <Field name="from_name" validate={isRequired()} maxLength={50}>
                     {(field) => (
-                      <FormInput {...field} label={t('contact.label.name')} placeholder={t('contact.name')} />
+                      <FormInput
+                        {...field}
+                        data-testid="form_name"
+                        label={t('contact.label.name')}
+                        placeholder={t('contact.name')}
+                      />
                     )}
                   </Field>
                 </Col>
@@ -51,6 +56,7 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
                     {(field) => (
                       <FormInput
                         {...field}
+                        data-testid="form_email"
                         type="email"
                         label={t('contact.label.email')}
                         placeholder={t('contact.email')}
@@ -61,7 +67,12 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
                 <Col lg={4} sm={12}>
                   <Field name="subject" validate={isRequired()} maxLength={100}>
                     {(field) => (
-                      <FormInput {...field} label={t('contact.label.subject')} placeholder={t('contact.subject')} />
+                      <FormInput
+                        {...field}
+                        data-testid="form_subject"
+                        label={t('contact.label.subject')}
+                        placeholder={t('contact.subject')}
+                      />
                     )}
                   </Field>
                 </Col>
@@ -69,16 +80,27 @@ export const Contact: FunctionComponent<Props> = ({ sectionRef }) => {
               <Row>
                 <Col>
                   <Field name="message_html" maxLength={1000} validate={isRequired()}>
-                    {(field) => <FormTextarea {...field} type="textarea" label={t('contact.label.message')} />}
+                    {(field) => (
+                      <FormTextarea
+                        {...field}
+                        data-testid="form_message"
+                        type="textarea"
+                        label={t('contact.label.message')}
+                      />
+                    )}
                   </Field>
                 </Col>
               </Row>
               <Row>
                 <Col>
-                  <Field name="g-recaptcha-response" validate={isRequired()}>
+                  <Field name="g-recaptcha-response" type="checkbox" validate={isRequired()}>
                     {(field) => <FormReCaptcha mode={mode} {...field} />}
                   </Field>
-                  <SubmitButton className="btn btn-success roboto" type="submit" disabled={submitting}>
+                  <SubmitButton
+                    data-testid="form_submit"
+                    className="btn btn-success roboto"
+                    type="submit"
+                    disabled={submitting}>
                     {t('contact.send')}
                   </SubmitButton>
                   <SubmitMessage submitError={submitError} submitSucceeded={submitSucceeded} />

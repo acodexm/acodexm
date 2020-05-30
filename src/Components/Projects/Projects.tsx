@@ -61,7 +61,8 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
 
   const getRepos = () => {
     setState({ loading: true, error: false });
-    axios('https://api.github.com/users/acodexm/repos')
+    axios
+      .get(process.env.REACT_APP_GITHUB_REPO_URL || '', { baseURL: process.env.REACT_APP_GITHUB_REPO_BASEURL })
       .then(({ data }) => {
         setProjects(data);
         setState({ loading: false, error: false });
@@ -72,6 +73,7 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
       });
   };
   useEffect(() => {
+    console.log('call');
     getRepos();
   }, []);
   const { t } = useTranslation();
@@ -91,7 +93,10 @@ const Projects: FunctionComponent<Props> = ({ sectionRef }) => {
               </Col>
             ))}
             <Col col>
-              <Github onClick={() => window.open('https://github.com/acodexm/repositories', '_blank')} />
+              <Github
+                data-testid={'github'}
+                onClick={() => window.open('https://github.com/acodexm/repositories', '_blank')}
+              />
             </Col>
           </Row>
         </Container>

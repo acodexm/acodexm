@@ -1,43 +1,14 @@
-export interface ILocalStorageConfigKey {
-  key: string;
-  path: string;
-  value?: any | null;
-}
-
-export interface ILocalStorageConfig {
-  keys: ILocalStorageConfigKey[];
-}
-
-const DEFAULT_CONFIG: ILocalStorageConfig = {
-  keys: [
-    {
-      key: 'theme',
-      path: 'system.theme'
-    },
-    {
-      key: 'language',
-      path: 'system.language'
-    }
-  ]
-};
+export const APPLICATION_THEME = 'APPLICATION_THEME';
+export const APPLICATION_LANGUAGE = 'APPLICATION_LANGUAGE';
 
 /**
  * Local Storage class
  */
 class LocalStorage {
-  private static config: ILocalStorageConfig = DEFAULT_CONFIG;
-
-  private constructor() {}
-
-  public static configure(config: ILocalStorageConfig): void {
-    this.config = config;
-  }
-
   public static getItem(key: string): any {
     try {
       let data = localStorage.getItem(key);
       if (!data) return null;
-
       data = JSON.parse(data);
       return data;
     } catch (error) {
@@ -56,6 +27,9 @@ class LocalStorage {
 
   public static remvoeItem(key: string): void {
     localStorage.removeItem(key);
+  }
+  public static clear(): void {
+    localStorage.clear();
   }
 }
 

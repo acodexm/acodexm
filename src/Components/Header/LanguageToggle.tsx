@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactToggle from 'react-toggle';
 import pl from '../../assets/svg/pl.svg';
 import en from '../../assets/svg/en.svg';
 import styled from 'styled-components';
 import { useSetStateWithStorage } from '../../hooks/useSetState';
-import LocalStorage from '../../utils/localStorage';
+import { APPLICATION_LANGUAGE } from '../../utils/localStorage';
 
 enum Language {
   English = 'en',
@@ -25,10 +25,9 @@ const Toggle = styled.div`
     }
   }
 `;
-const isChecked = () => (LocalStorage.getItem('APPLICATION_LANGUAGE') || { lang: 'en' }).lang === 'en';
 const LanguageToggle: FunctionComponent = () => {
   const { i18n } = useTranslation();
-  const [{ lang }, setLang] = useSetStateWithStorage({ lang: Language.English }, 'APPLICATION_LANGUAGE');
+  const [{ lang }, setLang] = useSetStateWithStorage(APPLICATION_LANGUAGE, { lang: Language.English });
   const onToggle = () => {
     const nextLang = lang === Language.Polski ? Language.English : Language.Polski;
     setLang({ lang: nextLang });
@@ -37,7 +36,7 @@ const LanguageToggle: FunctionComponent = () => {
 
   return (
     <Toggle>
-      <ReactToggle defaultChecked={isChecked()} icons={false} onChange={onToggle} />
+      <ReactToggle defaultChecked={lang === 'en'} icons={false} onChange={onToggle} />
     </Toggle>
   );
 };

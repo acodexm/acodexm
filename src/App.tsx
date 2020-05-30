@@ -1,8 +1,9 @@
-import React, { FunctionComponent, Suspense, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, Suspense, useEffect, useRef } from 'react';
 import 'react-toggle/style.css';
 import ErrorBoundary from './Components/Error/ErrorBoundary';
 import { BaseCSS } from 'styled-bootstrap-grid';
 import { ThemeProvider } from 'styled-components';
+import { Normalize } from 'styled-normalize';
 import Footer from './Components/Footer/Footer';
 import Navbar from './Components/Header/Navbar';
 import Welcome from './Components/Welcome/Welcome';
@@ -24,7 +25,7 @@ interface Loading {
 }
 
 const App: FunctionComponent<Loading> = ({ hideLoader }) => {
-  const [state, setState] = useSetStateWithStorage({ mode: 'dark' }, 'APPLICATION_THEME');
+  const [state, setState] = useSetStateWithStorage('APPLICATION_THEME', { mode: 'dark' });
   const { t } = useTranslation();
   const { sticky, element } = useSticky();
   useEffect(hideLoader, []);
@@ -55,6 +56,7 @@ const App: FunctionComponent<Loading> = ({ hideLoader }) => {
       <ThemeProvider theme={{ mode: state.mode }}>
         <Suspense fallback={<FontAwesomeIcon icon={faSpinner} spin />}>
           <div className="App">
+            <Normalize />
             <BaseCSS />
             <Navbar sticky={sticky} sections={sections} onChangeTheme={onChangeTheme} />
             <main>

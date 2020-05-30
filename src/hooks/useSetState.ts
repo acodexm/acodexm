@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LocalStorage from '../utils/localStorage';
 import { isFunction } from 'lodash';
 
@@ -10,30 +10,21 @@ type Partial<T> = {
 export function useSetState<S>(initState: S | (() => S)): [S, Dispatch<SetStateAction<Partial<S>>>] {
   const [state, setState] = useState(initState);
   const updateState: Dispatch<SetStateAction<Partial<S>>> = (arg) => {
-    setState((prev) => ({ ...prev, ...arg }));
+    if (isFunction(arg)) {
+      setState((prev) => arg(prev) as S);
+    } else setState((prev) => ({ ...prev, ...arg }));
   };
   return [state, updateState];
 }
 
 export function useSetStateWithStorage<S>(
-  initState: S | (() => S),
-  key: string
+  key: string,
+  initState: S | (() => S)
 ): [S, Dispatch<SetStateAction<Partial<S>>>] {
   const data = (LocalStorage.getItem(key) as S) || initState;
-  const [state, setState] = useState(data);
-  const updateState: Dispatch<SetStateAction<Partial<S>>> = (arg) => {
-    if (isFunction(arg)) {
-      setState((prev) => {
-        const data = arg(prev) as S;
-        LocalStorage.setItem(key, data);
-        return data;
-      });
-    } else
-      setState((prev) => {
-        const data = { ...prev, ...arg };
-        LocalStorage.setItem(key, data);
-        return data;
-      });
-  };
-  return [state, updateState];
+  const [state, setState] = useSetState<S>(data);
+  useEffect(() => {
+    LocalStorage.setItem(key, state);
+  }, [state]);
+  return [state, setState];
 }
