@@ -19,13 +19,14 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSetStateWithStorage } from './hooks/useSetState';
 import './i18n';
+import { APPLICATION_THEME } from './utils/localStorage';
 
 interface Loading {
   hideLoader(): void;
 }
 
 const App: FunctionComponent<Loading> = ({ hideLoader }) => {
-  const [state, setState] = useSetStateWithStorage('APPLICATION_THEME', { mode: 'dark' });
+  const [state, setState] = useSetStateWithStorage(APPLICATION_THEME, { mode: 'dark' });
   const { t } = useTranslation();
   const { sticky, element } = useSticky();
   useEffect(hideLoader, []);
