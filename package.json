@@ -1,11 +1,11 @@
 {
-  "name": "acodexm-page-ts",
+  "name": "acodexm",
   "version": "1.0.0",
   "description": "My page version 2",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acodexm/acodexm-page-ts.git"
+    "url": "git+https://github.com/acodexm/acodexm.git"
   },
   "keywords": [
     "HTML5",
@@ -14,9 +14,9 @@
   "author": "acodexm",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/acodexm/acodexm-page-ts/issues"
+    "url": "https://github.com/acodexm/acodexm/issues"
   },
-  "homepage": "https://acodexm.github.io/acodexm-page-ts",
+  "homepage": "https://acodexm.github.io/acodexm",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
